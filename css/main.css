@@ -251,6 +251,8 @@ video#videobg:-ms-fullscreen {
 
 	.comment-box {
 		width: 250px;
+		margin-bottom: 5px;
+		height: 200px;
 	}
 }
 
