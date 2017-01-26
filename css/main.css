@@ -119,6 +119,12 @@ body {
 	width: 50%;
 }
 
+.comment-form .comment-submit {
+	background: transparent;
+	border: none;
+	text-transform: uppercase;
+}
+
 .comment-box {
 	height: 300px;
 	width: 350px;
