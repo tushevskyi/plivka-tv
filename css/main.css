@@ -244,6 +244,14 @@ video#videobg:-ms-fullscreen {
 	.button-block {
 		top: 70px;
 	}
+
+	.comment-text {
+		font-size: 12px;	
+	}
+
+	.comment-box {
+		width: 250px;
+	}
 }
 
 
