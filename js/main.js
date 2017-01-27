@@ -83,12 +83,12 @@ $(function() {
 
 	
 	let timedelay = 1;
-	let _delay = setInterval(delayCheck, 500);
+	// let _delay = setInterval(delayCheck, 500);
 	let add_message = $('.add-message');
 	let fosuc_check = true;
 	
 
-	$document.on('mousemove', hideAllEvent);
+	// $document.on('mousemove', hideAllEvent);
 	add_message.on('focus', onFocusEvent);
 	add_message.on('blur', onBlurEvent);
 
