@@ -7,6 +7,7 @@ $(function() {
 			videoVrap = document.getElementById('video-wrap'),
 			about = $('.about_pop-up'),
 			navigation = $('.navigation'),
+			main_logo = $('.main-logo'),
 			btn_mute_on = $('.button__mute-on'),
 			btn_mute_off = $('.button__mute-off'),
 			btn_close_about = $('.button_close'),
@@ -28,6 +29,8 @@ $(function() {
 	function aboutEvent() {
 		about.css('display','block');
 		navigation.css('display','none');
+		main_logo.css('display','none');
+
 	}
 
 	function muteEvent() {
@@ -45,6 +48,7 @@ $(function() {
 	function closeAboutEvent() {
 		about.css('display','none');
 		navigation.css('display','block');
+		main_logo.css('display','block');
 	}
 
 	function fullscreenEvent() {
@@ -99,17 +103,18 @@ $(function() {
 	function delayCheck() {
 		if (timedelay == 5 && fosuc_check) {
 			navigation.fadeOut();
+			$('.main-logo').appendTo('.wrap');
 			timedelay = 1;
 		}
 		timedelay = timedelay + 1;
 	}
 	 
 	function hideAllEvent() {
-		navigation.fadeIn();
+		navigation.not(document.getElementsByClassName('main-logo')).fadeIn();
 		timedelay = 1;
 		clearInterval(_delay);
 		_delay = setInterval(delayCheck, 500);
-	};
+	}
 	
 	
 
