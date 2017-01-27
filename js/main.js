@@ -83,12 +83,12 @@ $(function() {
 
 	
 	let timedelay = 1;
-	// let _delay = setInterval(delayCheck, 500);
+	let _delay = setInterval(delayCheck, 1000);
 	let add_message = $('.add-message');
 	let fosuc_check = true;
 	
 
-	// $document.on('mousemove', hideAllEvent);
+	$document.on('mousemove', showAllEvent);
 	add_message.on('focus', onFocusEvent);
 	add_message.on('blur', onBlurEvent);
 
@@ -101,7 +101,7 @@ $(function() {
 	}
 
 	function delayCheck() {
-		if (timedelay == 5 && fosuc_check) {
+		if (timedelay == 10 && fosuc_check) {
 			navigation.fadeOut();
 			$('.main-logo').appendTo('.wrap');
 			timedelay = 1;
@@ -109,13 +109,11 @@ $(function() {
 		timedelay = timedelay + 1;
 	}
 	 
-	function hideAllEvent() {
-		navigation.not(document.getElementsByClassName('main-logo')).fadeIn();
+	function showAllEvent() {
+		navigation.fadeIn();
 		timedelay = 1;
 		clearInterval(_delay);
-		_delay = setInterval(delayCheck, 500);
+		_delay = setInterval(delayCheck, 1000);
 	}
 	
-	
-
 });
