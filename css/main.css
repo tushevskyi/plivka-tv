@@ -260,6 +260,11 @@ video#videobg:-ms-fullscreen {
 		margin-bottom: 5px;
 		height: 200px;
 	}
+
+	.about_title {
+		font-size: 25px;
+    	line-height: 40px;
+	}
 }
 
 
