@@ -83,7 +83,7 @@ $(function() {
 
 	
 	let timedelay = 1;
-	let _delay = setInterval(delayCheck, 100);
+	let _delay = setInterval(delayCheck, 1000);
 	let add_message = $('.add-message');
 	let fosuc_check = true;
 	
@@ -113,7 +113,7 @@ $(function() {
 		navigation.fadeIn();
 		timedelay = 1;
 		clearInterval(_delay);
-		_delay = setInterval(delayCheck, 100);
+		_delay = setInterval(delayCheck, 1000);
 	}
 	
 });
