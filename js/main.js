@@ -2,6 +2,8 @@ $(function() {
 
 	'use strict'
 	
+
+
 	const	btn_about = $('.button__about'),
 			video = $('#videobg'),
 			videoVrap = document.getElementById('video-wrap'),
@@ -82,11 +84,10 @@ $(function() {
 	}
 
 	
-	let timedelay = 1;
-	let _delay = setInterval(delayCheck, 1000);
-	let add_message = $('.add-message');
-	let fosuc_check = true;
-	
+	let timedelay = 0,
+		_delay = setInterval(delayCheck, 1000),
+	 	add_message = $('.add-message'),
+		fosuc_check = true;
 
 	$document.on('mousemove', showAllEvent);
 	add_message.on('focus', onFocusEvent);
@@ -101,19 +102,25 @@ $(function() {
 	}
 
 	function delayCheck() {
-		if (timedelay == 10 && fosuc_check) {
-			navigation.fadeOut();
+		if (timedelay === 5 && fosuc_check) {
+			navigation.fadeOut('slow', () => {
+				clearInterval(_delay);		
+			});
 			$('.main-logo').appendTo('.wrap');
-			timedelay = 1;
+			timedelay = 0;
 		}
 		timedelay = timedelay + 1;
+		console.log(timedelay);
 	}
 	 
 	function showAllEvent() {
-		navigation.fadeIn();
-		timedelay = 1;
+		navigation.fadeIn('slow');
+		timedelay = 0;
 		clearInterval(_delay);
 		_delay = setInterval(delayCheck, 1000);
 	}
-	
+ 	
 });
+
+
+

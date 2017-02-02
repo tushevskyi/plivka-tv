@@ -246,6 +246,13 @@ video#videobg:-ms-fullscreen {
     -o-animation-delay: 1s;
 }
 
+.fall{
+   cursor:default;
+   font-size:10px;
+   z-index:999999999999;
+   color:#f00;
+}
+
 @media screen and (max-width:765px) {
 	.button-block {
 		top: 70px;
