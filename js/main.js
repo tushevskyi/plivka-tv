@@ -90,6 +90,7 @@ $(function() {
 		fosuc_check = true;
 
 	$document.on('mousemove', showAllEvent);
+
 	add_message.on('focus', onFocusEvent);
 	add_message.on('blur', onBlurEvent);
 
@@ -103,23 +104,25 @@ $(function() {
 
 	function delayCheck() {
 		if (timedelay === 5 && fosuc_check) {
-			navigation.fadeOut('slow', () => {
-				clearInterval(_delay);		
-			});
+			navigation.removeClass('showNavigation');
+			clearInterval(_delay);
 			$('.main-logo').appendTo('.wrap');
 			timedelay = 0;
 		}
-		timedelay = timedelay + 1;
+		timedelay += 1;
 		console.log(timedelay);
 	}
 	 
 	function showAllEvent() {
-		navigation.fadeIn('slow');
+		navigation.addClass('showNavigation');
+		console.log('test');
 		timedelay = 0;
 		clearInterval(_delay);
 		_delay = setInterval(delayCheck, 1000);
 	}
- 	
+
+
+
 });
 
 
