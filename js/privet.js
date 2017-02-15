@@ -79,8 +79,9 @@ function parseServerResponse(txt) {
   function setupVideo(j) {
     var startTime = j.current.start_time;
     player.src = j.current.url + '#t=' + startTime;
-    artist.innerHTML = j.current.artist;
-    title.innerHTML = j.current.title;
+    // Нужно добавить в DOM отображение artist + title + description
+    // artist.innerHTML = j.current.artist;
+    // title.innerHTML = j.current.title;
     nv_src = j.next.url;
     nv_artist = j.next.artist;
     nv_title = j.next.title;
