@@ -1,7 +1,7 @@
 $(function() {
 
 	'use strict'
-	
+
 
 
 	const	btn_about = $('.button__about'),
@@ -83,13 +83,13 @@ $(function() {
 		}
 	}
 
-	
+
 	let timedelay = 0,
-		_delay = setInterval(delayCheck, 1000),
+		// _delay = setInterval(delayCheck, 1000),
 	 	add_message = $('.add-message'),
 		fosuc_check = true;
 
-	$document.on('mousemove', showAllEvent);
+	// $document.on('mousemove', showAllEvent);
 
 	add_message.on('focus', onFocusEvent);
 	add_message.on('blur', onBlurEvent);
@@ -112,7 +112,7 @@ $(function() {
 		timedelay += 1;
 		console.log(timedelay);
 	}
-	 
+
 	function showAllEvent() {
 		navigation.addClass('showNavigation');
 		console.log('test');
@@ -124,6 +124,3 @@ $(function() {
 
 
 });
-
-
-

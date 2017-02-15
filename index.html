@@ -73,34 +73,14 @@
                 </div>
                 <div class='comment-form'>
                     <div class='comment-box'>
-                        <div class='comment'>
+                        <!-- <div class='comment'>
                             <div class='comment-text'>
                                 <p>Hello, my name is Bogdan. Wery good music here</p>
                             </div>
-                        </div>
-                        <div class='comment'>
-                            <div class='comment-text'>
-                                <p>Hello, my name is Bogdan. Wery good music here</p>
-                            </div>
-                        </div>
-                        <div class='comment'>
-                            <div class='comment-text'>
-                                <p>Hello, my name is Bogdan. Wery good music here</p>
-                            </div>
-                        </div>
-                        <div class='comment'>
-                            <div class='comment-text'>
-                                <p>Hello, my name is Bogdan. Wery good music here</p>
-                            </div>
-                        </div>
-                        <div class='comment'>
-                            <div class='comment-text'>
-                                <p>Hello, my name is Bogdan. Wery good music here</p>
-                            </div>
-                        </div>
+                        </div> -->
                     </div>
                     <input type='text' class="add-message" size="40" />
-                    <button type='button' id='send' class='comment-submit'>send</button>
+                    <button type='button' id='send' class='comment-submit' onclick="sendMessage();">send</button>
                 </div>
             </div>
             <div class='about_pop-up'>
@@ -114,7 +94,7 @@
                                     ENTHUSIASTIC
                                     PROJECT
                                 </h1>
-                                <p class='about_text'> 
+                                <p class='about_text'>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
                                 </p>
                             </div>
@@ -136,19 +116,20 @@
 
             <div id='video-wrap'>
                 <video autoplay id="videobg" loop>
-                  <source src="images/video.mp4" type="video/mp4">
+                  <source src="" type="video/mp4">
                   Your browser does not support the video tag. I suggest you upgrade your browser.
                 </video>
             </div>
         </div>
 
-    
-        
+
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/vendor/screenfull.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/privet.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
