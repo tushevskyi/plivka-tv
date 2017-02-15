@@ -1,4 +1,4 @@
-var wsHost = "ws://localhost:8085/ws";
+var wsHost = "ws://ws.plivka.tv:8085/ws";
 var socket = new WebSocket(wsHost);
 
 var player = document.getElementById('videobg');
