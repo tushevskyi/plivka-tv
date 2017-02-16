@@ -1,4 +1,5 @@
 var wsHost = "ws://ws.plivka.tv:8085/ws";
+// var wsHost = "ws://localhost:8085/ws";
 var socket = new WebSocket(wsHost);
 
 var player = document.getElementById('videobg');
@@ -97,7 +98,7 @@ function parseServerResponse(txt) {
     b = document.getElementsByClassName('comment-box')[0];
     n = "";
     for (var i = 0; i < messages.length; i++) {
-      l = "<div class='comment'><div class='comment-text'><p>" + messages[i] + "</p></div></div>";
+      l = "<div class='comment'><div class='comment-text'><p>: " + messages[i] + "</p></div></div>";
       n += l;
     }
     b.innerHTML = n;
@@ -117,8 +118,8 @@ function sendMessage() {
     payload = {};
     payload['command'] = 'new_message';
     payload['message'] = {
-      'sender':'dolbak',
-      'message':m,
+      'sender':'',
+      'text':m,
     };
     payload = JSON.stringify(payload);
     socket.send(payload);
