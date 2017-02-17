@@ -110,12 +110,10 @@ $(function() {
 			timedelay = 0;
 		}
 		timedelay += 1;
-		console.log(timedelay);
 	}
 
 	function showAllEvent() {
 		navigation.addClass('showNavigation');
-		console.log('test');
 		timedelay = 0;
 		clearInterval(_delay);
 		_delay = setInterval(delayCheck, 1000);

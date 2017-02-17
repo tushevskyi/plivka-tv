@@ -129,11 +129,14 @@ body {
 
 .comment-form input {
 	background: transparent;
-	border-top: none;
-	border-right: none;
+	border: 1px solid red;
+	width: 350px;
+	/*border-top: none;
+	border-right: none;*/
+
 	/*border-bottom: 1px solid rgb(210,66,47);*/
-	border-bottom: none;
-	border-left: none;
+	/*border-bottom: none;
+	border-left: none;*/
 	/*color: transparent;
 	text-shadow: 0 0 0 rgb(210,66,47);*/
 	cursor: pointer;
@@ -146,11 +149,12 @@ body {
 }
 
 .comment-box {
-	height: 150px;
-	width: 350px;
+	height: 120px;
+	max-width: 350px;
 	margin-bottom: 50px;
 	padding-right: 6px;
 	overflow: scroll;
+	border: 1px solid red;
 }
 
 .comment-text {
