@@ -1,6 +1,6 @@
 $(function() {
 
-	'use strict'
+	'use strict';
 
 
 
@@ -17,7 +17,10 @@ $(function() {
 			open_share_donate_block = $('.button__open-share-donate img'),
 			share_donate_block = $('.share-donate-block'),
 			fullscreen = $('.button__fullscreen'),
-			$document = $(document);
+			$document = $(document),
+			show_comments = $('.show_comments'),
+			comment_form = $('.comment-form'),
+			comment_box = $('.comment-box');	
 
 	btn_about.on('click', aboutEvent);
 	btn_mute_on.on('click', muteEvent);
@@ -27,12 +30,12 @@ $(function() {
 	open_share_donate_block.on('click', openShareDonateEvent);
 	stopPropagationDonateBLock.on('click', stopPropagationEvent);
 	$document.on('click', documentClickEvent);
+	show_comments.on('click', showComments);
 
 	function aboutEvent() {
 		about.css('display','block');
 		navigation.css('display','none');
 		main_logo.css('display','none');
-
 	}
 
 	function muteEvent() {
@@ -46,6 +49,8 @@ $(function() {
 		btn_mute_on.css('display','block');
 		video.prop('muted',0);
 	}
+
+	video.prop('muted',1); // muted for testing
 
 	function closeAboutEvent() {
 		about.css('display','none');
@@ -83,23 +88,35 @@ $(function() {
 		}
 	}
 
+	function showComments() {
+		show_comments.fadeOut('400', function() {
+			comment_form.fadeIn(800, function() {
+				$(this).find('.add-message').focus();
+			});	
+		});
+	}
+
 
 	let timedelay = 0,
-		// _delay = setInterval(delayCheck, 1000),
+		_delay = setInterval(delayCheck, 1000),
 	 	add_message = $('.add-message'),
 		fosuc_check = true;
 
-	// $document.on('mousemove', showAllEvent);
+	$document.on('mousemove', showAllEvent);
 
 	add_message.on('focus', onFocusEvent);
 	add_message.on('blur', onBlurEvent);
 
 	function onFocusEvent() {
 		fosuc_check = false;
+		comment_box.animate({ scrollTop: comment_box.height() }, 1000);
 	}
 
 	function onBlurEvent() {
 		fosuc_check = true;
+		comment_form.fadeOut('800', function() {
+			show_comments.fadeIn('400');
+		});
 	}
 
 	function delayCheck() {
