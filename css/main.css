@@ -122,16 +122,15 @@ body {
 }
 
 .fadeOutRight {
-	animation: fadeOutRight 1s forwards;
-}
-
-.fadeInLeft {
-	animation: fadeInLeft 1s forwards;	
+	-webkit-animation: fadeOutRight 1s forwards;
+	-moz-animation:    fadeOutRight 1s forwards;
+	-o-animation:      fadeOutRight 1s forwards;
+	animation:         fadeOutRight 1s forwards;
 }
 
 @keyframes fadeOutRight {
 	0% {
-		opacity: 1
+		opacity: 1;
 	}
 
 	100% {
@@ -141,8 +140,86 @@ body {
 	}
 }
 
+@-webkit-keyframes fadeOutRight {
+  	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		visibility: hidden;
+		left: -4px;
+	}
+}
+@-moz-keyframes fadeOutRight {
+  	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		visibility: hidden;
+		left: -4px;
+	}
+}
+@-o-keyframes fadeOutRight {
+  	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		visibility: hidden;
+		left: -4px;
+	}
+}
+
+.fadeInLeft {	
+	-webkit-animation: fadeInLeft 1s forwards;
+	-moz-animation:    fadeInLeft 1s forwards;
+	-o-animation:      fadeInLeft 1s forwards;
+	animation:         fadeInLeft 1s forwards;
+}
+
 @keyframes fadeInLeft {
 	0% {
+		opacity: 0;
+		left: -4px;
+		visibility: hidden;
+	}
+
+	100% {
+		opacity: 1;
+		left: -50px;
+	}
+}
+
+@-webkit-keyframes fadeInLeft {
+  	0% {
+		opacity: 0;
+		left: -4px;
+		visibility: hidden;
+	}
+
+	100% {
+		opacity: 1;
+		left: -50px;
+	}
+}
+@-moz-keyframes fadeInLeft {
+  	0% {
+		opacity: 0;
+		left: -4px;
+		visibility: hidden;
+	}
+
+	100% {
+		opacity: 1;
+		left: -50px;
+	}
+}
+@-o-keyframes fadeInLeft {
+  	0% {
 		opacity: 0;
 		left: -4px;
 		visibility: hidden;
