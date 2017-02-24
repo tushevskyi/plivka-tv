@@ -20,7 +20,7 @@ $(function() {
 			$document = $(document),
 			show_comments = $('.show_comments'),
 			comment_form = $('.comment-form'),
-			comment_box = $('.comment-box');	
+			comment_box = $('.comment-box');
 
 	btn_about.on('click', aboutEvent);
 	btn_mute_on.on('click', muteEvent);
@@ -65,14 +65,16 @@ $(function() {
 	}
 
 	function openShareDonateEvent() {
-		if (share_donate_block.hasClass('fadeInRight')) {
+		if (share_donate_block.hasClass('fadeInLeft')) {
 			share_donate_block
-				.removeClass('animated fadeInRight')
-				.css('display','none');
+				.removeClass('animated fadeInLeft')
+				.addClass('fadeOutRight');
 		} else {
 			share_donate_block
+				.removeClass('fadeOutRight')
 				.css('display','block')
-				.addClass('animated fadeInRight');
+				.addClass('fadeInLeft');
+				// .addClass('animated fadeInRight')
 		}
 	}
 
@@ -81,10 +83,10 @@ $(function() {
 	}
 
 	function documentClickEvent() {
-		if (share_donate_block.hasClass('fadeInRight')) {
+		if (share_donate_block.hasClass('fadeInLeft')) {
 			share_donate_block
-				.css('display','none')
-				.removeClass('animated fadeInRight');
+				.removeClass('fadeInLeft')
+				.addClass('fadeOutRight');
 		}
 	}
 
@@ -98,11 +100,11 @@ $(function() {
 
 
 	let timedelay = 0,
-		_delay = setInterval(delayCheck, 1000),
+		// _delay = setInterval(delayCheck, 1000),
 	 	add_message = $('.add-message'),
 		fosuc_check = true;
 
-	$document.on('mousemove', showAllEvent);
+	// $document.on('mousemove', showAllEvent);
 
 	add_message.on('focus', onFocusEvent);
 	add_message.on('blur', onBlurEvent);
@@ -110,6 +112,9 @@ $(function() {
 	function onFocusEvent() {
 		fosuc_check = false;
 		comment_box.animate({ scrollTop: comment_box.height() }, 1000);
+		$(this).attr({
+			maxlength: '49'
+		});
 	}
 
 	function onBlurEvent() {

@@ -28,7 +28,7 @@ body {
   speak: none;
   text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 
@@ -117,8 +117,41 @@ body {
 .share-donate-block {
 	display: none;
     position: absolute;
-    top: 3px;
+    top: 3.5px;
     left: -50px;
+}
+
+.fadeOutRight {
+	animation: fadeOutRight 1s forwards;
+}
+
+.fadeInLeft {
+	animation: fadeInLeft 1s forwards;	
+}
+
+@keyframes fadeOutRight {
+	0% {
+		opacity: 1
+	}
+
+	100% {
+		opacity: 0;
+		visibility: hidden;
+		left: -4px;
+	}
+}
+
+@keyframes fadeInLeft {
+	0% {
+		opacity: 0;
+		left: -4px;
+		visibility: hidden;
+	}
+
+	100% {
+		opacity: 1;
+		left: -50px;
+	}
 }
 
 .comment-form {
@@ -145,6 +178,7 @@ body {
 	background: transparent;
 	width: 350px;
 	border: none;
+	font-size: 11px;
 	
 	/*color: transparent;
 	text-shadow: 0 0 0 rgb(210,66,47);*/
@@ -158,16 +192,30 @@ body {
 }
 
 .comment-box {
-	height: 150px;
+	height: 120px;
 	max-width: 350px;
-	margin-bottom: 50px;
-	padding-right: 6px;
+	margin-bottom: 30px;
 	overflow: hidden;
+	position: relative;
 }
 
 .comment-text {
 	font-size: 12px;
 	word-wrap: break-word
+}
+
+.last-comment {
+	animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
 }
 
 /*.comment input:focus {
@@ -204,7 +252,7 @@ video#videobg:-ms-fullscreen {
 }
 
 .about_pop-up .container {
-	height: 100%;
+	height: 100vh;
 	flex-direction: column;
 	-webkit-box-orient: column;
 	-webkit-box-direction: column;
@@ -228,7 +276,6 @@ video#videobg:-ms-fullscreen {
 	display: none;
 	background: rgba(0,0,0,.9);
     position: absolute;
-    min-height: 700px;
     top: 0;
     bottom: 0;
     left: 0;
@@ -291,10 +338,7 @@ video#videobg:-ms-fullscreen {
 }
 
 @media screen and (max-width:765px) {
-	.button-block {
-		top: 70px;
-	}
-
+	
 	.comment-text {
 		font-size: 12px;	
 	}
@@ -306,12 +350,12 @@ video#videobg:-ms-fullscreen {
 	}
 
 	.about_pop-up .about_title {
-		font-size: 20px;
-    	line-height: 40px;
+		font-size: 18px;
+    	line-height: 20px;
 	}
 
 	.about_pop-up .button_close {
-		top: 30px;
+		top: 20px;
 		right: 30px;
 	}
 
@@ -319,12 +363,25 @@ video#videobg:-ms-fullscreen {
 		position: initial;
 	}
 
-	.comment-form {
+	.comment-form,
+	.show_comments {
 		display: none;
 	}
 
 	.main-logo img {
 		width: 50px;
+	}
+
+	.about_pop-up .about_text {
+		margin-top: 15px;
+	}
+
+	.about_pop-up .button_about-block {
+		margin-top: 20px;
+	}
+
+	.about_pop-up .button_close {
+		width: 25px;
 	}
 }
 

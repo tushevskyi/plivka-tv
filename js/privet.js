@@ -3,20 +3,20 @@ $(function() {
   'use strict';
   // var wsHost = "ws://localhost:8085/ws";
 
-  const player = document.getElementById('videobg'),
-        wsHost = "ws://ws.plivka.tv:8085/ws",
-        artist = document.getElementById('artist'),
-        title = document.getElementById('title'),
-        desc = document.getElementById('description'),
-        chat = document.getElementsByClassName("comment-box")[0],
-        isActive = true,
-        $add_message = $('.add-message'),
-        comment_box = $('.comment-box');  
+  const wsHost        = "ws://ws.plivka.tv:8085/ws",
+        player        = document.getElementById('videobg'),
+        artist        = document.getElementById('artist'),
+        title         = document.getElementById('title'),
+        desc          = document.getElementById('description'),
+        isActive      = true,
+        $add_message  = $('.add-message'),
+        comment_box   = $('.comment-box');
 
   let socket = new WebSocket(wsHost);
 
-  $add_message.on('enterKey', sendMessage);
-  $add_message.on('keyup', keyupEvent);
+  $add_message
+    .on('enterKey', sendMessage)
+    .on('keyup', keyupEvent);
 
   function keyupEvent(e) {
     if(e.keyCode === 13) {
@@ -115,13 +115,16 @@ $(function() {
         n = "";
     
     for (var i = 0; i < messages.length; i++) {
-      let l = "<div class='comment'><div class='comment-text'><p>: " + messages[i] + "</p></div></div>";
+      let l = "<div class='comment'><div class='comment-text'><p> " + messages[i] + "</p></div></div>";
       n += l;
     }
 
-
     comment_box.animate({ scrollTop: comment_box.height() }, 1100);
     comment_box[0].innerHTML = n;
+
+    let last_comment = comment_box[0].childNodes[comment_box[0].childNodes.length-1];
+    last_comment.className += ' last-comment';
+    
   }
 
   function setupNext(j) {
