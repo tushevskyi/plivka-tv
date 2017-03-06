@@ -28,7 +28,7 @@ body {
   speak: none;
   text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 

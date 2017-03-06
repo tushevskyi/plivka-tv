@@ -34,7 +34,7 @@ $(function() {
 
 	function aboutEvent() {
 		about.css('display','block');
-		navigation.css('display','none');
+		navigation.css('opacity','0');
 		main_logo.css('display','none');
 	}
 
@@ -52,7 +52,7 @@ $(function() {
 
 	function closeAboutEvent() {
 		about.css('display','none');
-		navigation.css('display','block');
+		navigation.css('opacity','1');
 		main_logo.css('display','block');
 	}
 
