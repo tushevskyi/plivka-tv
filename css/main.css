@@ -122,10 +122,10 @@ body {
 }
 
 .fadeOutRight {
-	-webkit-animation: fadeOutRight 1s forwards;
-	-moz-animation:    fadeOutRight 1s forwards;
-	-o-animation:      fadeOutRight 1s forwards;
-	animation:         fadeOutRight 1s forwards;
+	-webkit-animation: fadeOutRight 0.5s forwards;
+	-moz-animation:    fadeOutRight 0.5s forwards;
+	-o-animation:      fadeOutRight 0.5s forwards;
+	animation:         fadeOutRight 0.5s forwards;
 }
 
 @keyframes fadeOutRight {
@@ -175,10 +175,10 @@ body {
 }
 
 .fadeInLeft {	
-	-webkit-animation: fadeInLeft 1s forwards;
-	-moz-animation:    fadeInLeft 1s forwards;
-	-o-animation:      fadeInLeft 1s forwards;
-	animation:         fadeInLeft 1s forwards;
+	-webkit-animation: fadeInLeft 0.5s forwards;
+	-moz-animation:    fadeInLeft 0.5s forwards;
+	-o-animation:      fadeInLeft 0.5s forwards;
+	animation:         fadeInLeft 0.5s forwards;
 }
 
 @keyframes fadeInLeft {
@@ -245,6 +245,7 @@ body {
 	left: 45px;
 	text-transform: uppercase;
 	font-size: 12px;
+	letter-spacing: 1.4px;
 }
 
 .show_comments:hover {
@@ -345,9 +346,9 @@ video#videobg:-ms-fullscreen {
 	display: flex;
 }
 
-.about_pop-up .row {
+/*.about_pop-up .row {
 	position: relative;
-}
+}*/
 
 .about_pop-up {
 	display: none;
@@ -374,8 +375,8 @@ video#videobg:-ms-fullscreen {
 
 .about_pop-up .button_close {
 	width: 32px;
-	right: 0;
-	top: 15px;
+	right: 45px;
+	top: 45px;
 	transition: all .4s ease-in-out;
 }
 
@@ -390,6 +391,8 @@ video#videobg:-ms-fullscreen {
 	text-transform: uppercase;
 	font-size: 12px;
 	cursor: pointer;
+	letter-spacing: 1.4px;
+
 }
 
 .about_pop-up .button_about-block:hover {
@@ -407,7 +410,7 @@ video#videobg:-ms-fullscreen {
     -o-animation-delay: 1s;
 }
 
-.fall{
+.fall {
    cursor:default;
    font-size:10px;
    z-index:999999999999;
