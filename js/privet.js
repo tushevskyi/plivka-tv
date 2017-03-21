@@ -13,6 +13,7 @@ $(function() {
         comment_box   = $('.comment-box');
 
   let socket = new WebSocket(wsHost);
+  var quality_string = '1080'
 
   $add_message
     .on('enterKey', sendMessage)
@@ -44,7 +45,7 @@ $(function() {
     payload.command = command;
     payload = JSON.stringify(payload);
     socket.send(payload);
-    
+
   }
 
   function setupWS() {
@@ -96,7 +97,9 @@ $(function() {
   function setupVideo(j) {
     var startTime = j.current.start_time;
 
-    player.src = j.current.url + '#t=' + startTime;
+    var fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + j.current.url;
+
+    player.src = fullUrl + '#t=' + startTime;
     // Нужно добавить в DOM отображение artist + title + description
     // artist.innerHTML = j.current.artist;
     // title.innerHTML = j.current.title;
@@ -113,7 +116,7 @@ $(function() {
   function updateMessages(j) {
     let messages = JSON.parse(j.messages),
         n = "";
-    
+
     for (var i = 0; i < messages.length; i++) {
       let l = "<div class='comment'><div class='comment-text'><p> " + messages[i] + "</p></div></div>";
       n += l;
@@ -124,7 +127,7 @@ $(function() {
 
     let last_comment = comment_box[0].childNodes[comment_box[0].childNodes.length-1];
     last_comment.className += ' last-comment';
-    
+
   }
 
   function setupNext(j) {
@@ -150,5 +153,4 @@ $(function() {
       message_text.value = "";
     }
   }
-
 });
