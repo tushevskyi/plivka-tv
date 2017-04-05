@@ -37,6 +37,24 @@
         <meta name="theme-color" content="#ffffff">
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '1846060225655847',
+              xfbml      : true,
+              version    : 'v2.8'
+            });
+            FB.AppEvents.logPageView();
+          };
+
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+        </script>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -45,13 +63,13 @@
 
         <div class="wrap">
             <div class='navigation showNavigation'>
-                <a href='#' class='main-logo'>
-                    <img alt="main-logo" src='images/icons/plivka_logo.svg'>
-                </a>
                 <div class='button button__about'>
                     about
                 </div>
                 <div class='button-block'>
+                    <div class="button button__quality">
+                        
+                    </div>
                     <div class='button button__fullscreen'>
                         <img alt='fullscreen button' src='images/icons/fullscreen.svg'>
                     </div>
@@ -112,10 +130,13 @@
             </div>
 
             <div id='video-wrap'>
-                <video autoplay muted id="videobg" loop>
+                <video autoplay id="videobg" loop>
                   <source src="" type="video/mp4">
                   Your browser does not support the video tag. I suggest you upgrade your browser.
                 </video>
+            </div>
+            <div class='main-logo'>
+                <img alt="main-logo" src='images/icons/plivka_logo.svg'>
             </div>
         </div>
 
