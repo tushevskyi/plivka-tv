@@ -67,9 +67,6 @@
                     about
                 </div>
                 <div class='button-block'>
-                    <div class="button button__quality">
-                        
-                    </div>
                     <div class='button button__fullscreen'>
                         <img alt='fullscreen button' src='images/icons/fullscreen.svg'>
                     </div>
@@ -78,6 +75,14 @@
                     </div>
                     <div class='button button__mute-off'>
                         <img alt='mute sound button img' src='images/icons/mute_off.svg'>
+                    </div>
+                    <div class="button button__quality">
+                        <div class="current-quality">HD</div>
+                        <div class="quality-holder">
+                            <div class="j_fhd">1080</div>
+                            <div class="j_hd">720</div>
+                            <div class="j_sd">480</div>
+                        </div>
                     </div>
                     <div class='button button__open-share-donate'>
                         <img alt='share button img' src='images/icons/share.svg'>
@@ -130,10 +135,11 @@
             </div>
 
             <div id='video-wrap'>
-                <video autoplay id="videobg" loop>
-                  <source src="" type="video/mp4">
-                  Your browser does not support the video tag. I suggest you upgrade your browser.
+                <video autoplay id="videobg">
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag. I suggest you upgrade your browser.
                 </video>
+                <img src="images/spinner.gif" class='spiner'>
             </div>
             <div class='main-logo'>
                 <img alt="main-logo" src='images/icons/plivka_logo.svg'>

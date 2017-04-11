@@ -15,8 +15,10 @@ $(function() {
 			btn_close_about 	= $('.button_close'),
 			share_donate_button = $('.button__open-share-donate'),
 			open_share_donate 	= $('.button__open-share-donate img'),
+			change_quality 		= $('.current-quality'),
+			quality_holder      = $('.quality-holder'),
 			share_donate_block 	= $('.share-donate-block'),
-			fullscreen 			= $('.button__fullscreen'),
+			fullscreen 			= $('.button__fullscreen img'),
 			$document 			= $(document),
 			show_comments 		= $('.show_comments'),
 			comment_form 		= $('.comment-form'),
@@ -28,7 +30,7 @@ $(function() {
 	btn_close_about.on('click',closeAboutEvent);
 	fullscreen.on('click', fullscreenEvent);
 	open_share_donate.on('click', openShareDonateEvent);
-	share_donate_button.on('click', stopPropagationEvent);
+	change_quality.on('click', openChangeQuality);
 	$document.on('click', documentClickEvent);
 	show_comments.on('click', showComments);
 
@@ -62,26 +64,46 @@ $(function() {
     	}
 	}
 
-	function openShareDonateEvent() {
-		if (share_donate_block.hasClass('fadeInLeft')) {
-			share_donate_block
-				.removeClass('animated fadeInLeft')
+	function animationInOut(element) {
+		if (element.hasClass('fadeInLeft')) {
+			element
+				.removeClass('fadeInLeft')
 				.addClass('fadeOutRight');
 		} else {
-			share_donate_block
+			element
 				.removeClass('fadeOutRight')
 				.css('display','block')
 				.addClass('fadeInLeft');
+		}	
+	}
+
+	function closeMenuItem(item) {
+		if (item.hasClass('fadeInLeft')) {
+			item
+				.removeClass('fadeInLeft')
+				.addClass('fadeOutRight');
 		}
 	}
 
-	function stopPropagationEvent(e) {
+	function openShareDonateEvent(e) {
 		e.stopPropagation();
+		animationInOut(share_donate_block);
+		closeMenuItem(quality_holder);
+	}
+
+	function openChangeQuality(e) {
+		e.stopPropagation();	
+		animationInOut(quality_holder);
+		closeMenuItem(share_donate_block);
 	}
 
 	function documentClickEvent() {
 		if (share_donate_block.hasClass('fadeInLeft')) {
 			share_donate_block
+				.removeClass('fadeInLeft')
+				.addClass('fadeOutRight');
+		} else if (quality_holder.hasClass('fadeInLeft')) {
+			quality_holder
 				.removeClass('fadeInLeft')
 				.addClass('fadeOutRight');
 		}
@@ -97,11 +119,11 @@ $(function() {
 
 
 	let timedelay 	= 0,
-		_delay 		= setInterval(delayCheck, 1000),
+		// _delay 		= setInterval(delayCheck, 1000),
 	 	add_message = $('.add-message'),
 		fosuc_check = true;
 
-	$document.on('mousemove', showAllEvent);
+	// $document.on('mousemove', showAllEvent);
 
 	add_message.on('focus', onFocusEvent);
 	add_message.on('blur', onBlurEvent);
@@ -125,7 +147,6 @@ $(function() {
 		if (timedelay === 5 && fosuc_check) {
 			navigation.removeClass('showNavigation');
 			clearInterval(_delay);
-			$('.main-logo').appendTo('.wrap');
 			timedelay = 0;
 		}
 		timedelay += 1;

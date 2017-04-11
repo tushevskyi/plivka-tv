@@ -12,8 +12,14 @@ $(function() {
         $add_message  = $('.add-message'),
         comment_box   = $('.comment-box');
 
-  let socket = new WebSocket(wsHost);
-  var quality_string = '1080'
+  let socket         = new WebSocket(wsHost),
+      quality_string = '1080',
+      nv_src         = '',
+      nv_artist      = '',
+      nv_title       = '',
+      nv_desc        = '';
+
+  player.volume = 0;    
 
   $add_message
     .on('enterKey', sendMessage)
@@ -33,8 +39,8 @@ $(function() {
 
   player.onended = function(){
     player.src = nv_src;
-    artist.innerHTML = nv_artist;
-    title.innerHTML =  nv_title;
+    // artist.innerHTML = nv_artist;
+    // title.innerHTML =  nv_title;
     nv_src = '';
     request_next();
   }
@@ -84,8 +90,6 @@ $(function() {
       setupVideo(j);
     } else if (j.type == 'video_next') {
       setupNext(j);
-    } else if (j.type == 'video_next') {
-      setupNext(j);
     } else if (j.type == 'message_list') {
       updateMessages(j);
     } else {
@@ -95,22 +99,86 @@ $(function() {
   }
 
   function setupVideo(j) {
+    let full_hd_quality = $('.full-hd_quality'),
+        hd_quality      = $('.hd_quality'),
+        sd_quality      = $('.sd_quality'),
+        quality_holder  = $('.quality-holder'),
+        current_quality = $('.current-quality'),
+        main_share_btn  = $('.navigation .button_share');
+        
+    quality_holder.on('click', changeQuality);     
+
+
+
+    function changeQuality(e) {
+      switch(e.target.className) {
+        case 'j_sd': 
+          fullUrl = "http://cdn.plivka.tv/" + 480 + "/" + j.current.url;
+          player.src = fullUrl + '#t=' + player.currentTime;
+          current_quality.text('SD');
+          break;
+        case 'j_hd':
+          fullUrl = "http://cdn.plivka.tv/" + 720 + "/" + j.current.url;
+          player.src = fullUrl + '#t=' + player.currentTime;
+          current_quality.text('HD');
+          break;
+        case 'j_fhd':
+          fullUrl = "http://cdn.plivka.tv/" + 1080 + "/" + j.current.url;
+          player.src = fullUrl + '#t=' + player.currentTime;
+          current_quality.text('FHD');
+          break;
+      }
+    }
+
     var startTime = j.current.start_time;
-
     var fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + j.current.url;
-
     player.src = fullUrl + '#t=' + startTime;
+
+
+    $(player).one('play', function() {
+
+      let _volumeInterval = setInterval(volumeUp, 250),
+          volume          = 0;
+        
+      function volumeUp() {
+        volume += 0.1;
+        if(volume > 0.9) {
+          clearInterval(_volumeInterval);
+        }
+        player.volume = volume.toFixed(1);
+        console.log(volume.toFixed(1));
+      }
+
+    });
+
+
+
     // Нужно добавить в DOM отображение artist + title + description
     // artist.innerHTML = j.current.artist;
     // title.innerHTML = j.current.title;
-    let nv_src = j.next.url,
-        nv_artist = j.next.artist,
-        nv_title = j.next.title,
-        nv_desc = j.next.url;
-/*
-    console.log('Current video: ' + j.current.url + '#t=' + startTime);
-    console.log('Next video: ' + j.next.url);
-*/
+    nv_src = "http://cdn.plivka.tv/" + quality_string + "/" + j.next.url,
+    nv_artist = j.next.artist,
+    nv_title = j.next.title,
+    nv_desc = j.next.url;
+
+    /*
+      console.log('Current video: ' + j.current.url + '#t=' + startTime);
+      console.log('Next video: ' + j.next.url);
+    */    
+
+    main_share_btn.on('click', fbShare);
+
+    function fbShare() {
+      FB.ui({
+          display: 'popup',
+          method: 'share',
+          description: "plivka tv",
+          title: j.current.title,
+          link: "",
+          picture: "",
+          href: "http://plivka.tv/"
+      }, function(response){});
+    }
   }
 
   function updateMessages(j) {
@@ -131,11 +199,11 @@ $(function() {
   }
 
   function setupNext(j) {
-  let nv_src = j.next.url,
-      nv_artist = j.next.artist,
-      nv_title = j.next.title,
+      nv_src = "http://cdn.plivka.tv/" + quality_string + "/" + j.current.url;
+      nv_artist = j.next.artist;
+      nv_title = j.next.title;
       nv_description = j.next.description;
-	    // console.log('Next video: ' + j.next.url);
+	    console.log('Next video: ' + j.next.url);
   }
 
   function sendMessage() {
@@ -153,4 +221,5 @@ $(function() {
       message_text.value = "";
     }
   }
+
 });
