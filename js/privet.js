@@ -106,7 +106,7 @@ $(function() {
         current_quality = $('.current-quality'),
         main_share_btn  = $('.navigation .button_share');
         
-    quality_holder.on('click', changeQuality);     
+    quality_holder.on('click', changeQuality);    
 
     function changeQuality(e) {
       //fix bug with next video quality
@@ -132,9 +132,16 @@ $(function() {
       }
     }
 
+
     var startTime = j.current.start_time;
     var fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + j.current.url;
-    player.src = fullUrl + '#t=' + startTime;
+    // player.src = fullUrl + '#t=' + startTime;
+
+    if (window.location.pathname === '/index.html') {
+      player.src = fullUrl + '#t=' + startTime;
+    } else {
+      setSharedUrl('/shared.html');
+    }
 
     $(player).one('play', function() {
 
@@ -180,6 +187,20 @@ $(function() {
     }
   }
 
+
+  function setSharedUrl(shared_path) {
+    let url_pathname   = window.location.pathname,
+        video_pathname = window.location.search,
+        video_name;
+
+    if (url_pathname === shared_path) {
+      video_name = video_pathname.substring(3);
+      player.src = "http://cdn.plivka.tv/" + quality_string + "/" + video_name;
+    }
+  }
+
+
+
   function updateMessages(j) {
     let messages = JSON.parse(j.messages),
         n = "";
@@ -203,17 +224,6 @@ $(function() {
       nv_title = j.next.title;
       nv_description = j.next.description;
 	    console.log('Next video: ' + j.next.url);
-  }
-
-  function setSharedUrl() {
-    let url_pathname   = window.location.pathname,
-        video_pathname = window.location.search,
-        video_name;
-
-        if (url_pathname === '/shared.html') {
-          video_name = video_pathname.substring(3);
-        }
-
   }
 
   function sendMessage() {
