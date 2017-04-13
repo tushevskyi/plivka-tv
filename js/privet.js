@@ -13,11 +13,11 @@ $(function() {
         comment_box   = $('.comment-box');
 
   let socket         = new WebSocket(wsHost),
-      quality_string = '1080',
       nv_src         = '',
       nv_artist      = '',
       nv_title       = '',
-      nv_desc        = '';
+      nv_desc        = '',
+      quality_string = 1080;
 
   player.volume = 0;    
 
@@ -108,22 +108,24 @@ $(function() {
         
     quality_holder.on('click', changeQuality);     
 
-
-
     function changeQuality(e) {
+      //fix bug with next video quality
       switch(e.target.className) {
         case 'j_sd': 
-          fullUrl = "http://cdn.plivka.tv/" + 480 + "/" + j.current.url;
+          quality_string = 480;
+          fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + j.current.url;
           player.src = fullUrl + '#t=' + player.currentTime;
           current_quality.text('SD');
           break;
         case 'j_hd':
-          fullUrl = "http://cdn.plivka.tv/" + 720 + "/" + j.current.url;
+          quality_string = 720;
+          fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + j.current.url;
           player.src = fullUrl + '#t=' + player.currentTime;
           current_quality.text('HD');
           break;
         case 'j_fhd':
-          fullUrl = "http://cdn.plivka.tv/" + 1080 + "/" + j.current.url;
+          quality_string = 1080;
+          fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + j.current.url;
           player.src = fullUrl + '#t=' + player.currentTime;
           current_quality.text('FHD');
           break;
@@ -134,24 +136,21 @@ $(function() {
     var fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + j.current.url;
     player.src = fullUrl + '#t=' + startTime;
 
-
     $(player).one('play', function() {
 
-      let _volumeInterval = setInterval(volumeUp, 250),
+      let _volumeInterval = setInterval(volumeUp, 350),
           volume          = 0;
         
       function volumeUp() {
-        volume += 0.1;
-        if(volume > 0.9) {
+        volume += 0.05;
+        if(volume > 1) {
           clearInterval(_volumeInterval);
         }
-        player.volume = volume.toFixed(1);
-        console.log(volume.toFixed(1));
+        player.volume = volume.toFixed(2);
+        console.log(volume.toFixed(2));
       }
 
     });
-
-
 
     // Нужно добавить в DOM отображение artist + title + description
     // artist.innerHTML = j.current.artist;
@@ -174,9 +173,9 @@ $(function() {
           method: 'share',
           description: "plivka tv",
           title: j.current.title,
-          link: "",
-          picture: "",
-          href: "http://plivka.tv/"
+          link: '',
+          picture: '',
+          href: 'http://plivka.tv/shared.html?v=' + j.current.url
       }, function(response){});
     }
   }
@@ -204,6 +203,17 @@ $(function() {
       nv_title = j.next.title;
       nv_description = j.next.description;
 	    console.log('Next video: ' + j.next.url);
+  }
+
+  function setSharedUrl() {
+    let url_pathname   = window.location.pathname,
+        video_pathname = window.location.search,
+        video_name;
+
+        if (url_pathname === '/shared.html') {
+          video_name = video_pathname.substring(3);
+        }
+
   }
 
   function sendMessage() {
