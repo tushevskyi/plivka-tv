@@ -102,10 +102,29 @@ body {
           width: 24px;
           height: 24px; }
       .button-block .button__quality .quality-holder * {
-        display: inline-block;
-        font-size: 12px; }
-        .button-block .button__quality .quality-holder *:hover {
-          color: #fff; }
+        display: inline-block; }
+  .button-block .button__choose-chanel {
+    font-size: 17px; }
+    .button-block .button__choose-chanel .current-chanel {
+      display: inline-block;
+      transition: all .4s ease-in-out;
+      cursor: pointer; }
+      .button-block .button__choose-chanel .current-chanel img {
+        width: 24px;
+        height: 24px; }
+    .button-block .button__choose-chanel .chanel__holder {
+      display: none;
+      position: absolute;
+      top: 11px;
+      left: -50px;
+      cursor: pointer; }
+      .button-block .button__choose-chanel .chanel__holder .img_chanel__holder {
+        margin: 0 5px; }
+        .button-block .button__choose-chanel .chanel__holder .img_chanel__holder img {
+          width: 24px;
+          height: 24px; }
+      .button-block .button__choose-chanel .chanel__holder * {
+        display: inline-block; }
   .button-block .button__open-share-donate {
     position: relative; }
     .button-block .button__open-share-donate .share-donate-block {

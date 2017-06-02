@@ -10,7 +10,8 @@ $(function() {
         desc          = document.getElementById('description'),
         isActive      = true,
         $add_message  = $('.add-message'),
-        comment_box   = $('.comment-box');
+        comment_box   = $('.comment-box'),
+        chanel_name    = "main";
 
   let socket         = new WebSocket(wsHost),
       nv_src         = '',
@@ -49,7 +50,7 @@ $(function() {
     let payload = {};
 
     payload.command = command;
-    payload.layer = "main";
+    payload.layer = chanel_name;
     payload = JSON.stringify(payload);
     socket.send(payload);
   }
@@ -85,6 +86,7 @@ $(function() {
 
   function parseServerResponse(txt) {
     var j = JSON.parse(txt);
+    console.log(j);
 
     if (j.type == 'video_full') {
       setupVideo(j);
@@ -104,6 +106,7 @@ $(function() {
         sd_quality          = $('.sd_quality'),
         quality_holder      = $('.quality-holder'),
         current_quality_img = $('.current-quality img'),
+        chanel__holder      = $('.chanel__holder'),
         sd_img_src          = 'images/icons/SD_icon.svg',
         hd_img_src          = 'images/icons/HD_icon.svg',
         fhd_img_src         = 'images/icons/HD_plus_icon.svg',
@@ -114,7 +117,7 @@ $(function() {
     quality_holder.on('click', changeQuality);    
 
     function changeQuality(e) {
-      //fix bug with next video quality
+
       switch(e.target.className) {
         case 'js_sd': 
           quality_string = 480;
@@ -160,13 +163,47 @@ $(function() {
 
       checkIcon(fhd_img_src);
 
+    };
 
-    }
+    chanel__holder.on('click', changeChanel);
+
+    function changeChanel(e) {
+      let ukho    = 'js_ukho',
+          sxtn    = 'js_16',
+          main    = 'js_main',
+          payload = {};
+      
+      if(e.target.className === ukho) {
+        payload.layer = "ukho";
+        payload.command = "get_full";
+        payload = JSON.stringify(payload);
+        socket.send(payload);
+        
+        console.log(payload);
+      } else if(e.target.className === sxtn) {
+        payload.layer = "onesix";
+        payload.command = "get_full";
+        payload = JSON.stringify(payload);
+        socket.send(payload);
+      
+        console.log(payload);
+      } else {
+        payload.layer = "main";
+        payload.command = "get_full";
+        payload = JSON.stringify(payload);
+        socket.send(payload);
+      
+        console.log(payload);
+      }
+
+    };
+
+
 
 
     var startTime = j.current.start_time;
     var fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + j.current.url;
-    // player.src = fullUrl + '#t=' + startTime;
+    player.src = fullUrl + '#t=' + startTime;
 
     if (window.location.pathname === '/index.html') {
       player.src = fullUrl + '#t=' + startTime;
@@ -176,16 +213,16 @@ $(function() {
 
     $(player).one('play', function() {
 
-      let _volumeInterval = setInterval(volumeUp, 350),
-          volume          = 0;
+      // let _volumeInterval = setInterval(volumeUp, 350),
+      //     volume          = 0;
         
-      function volumeUp() {
-        volume += 0.05;
-        if(volume > 1) {
-          clearInterval(_volumeInterval);
-        }
-        player.volume = volume.toFixed(2);
-      }
+      // function volumeUp() {
+      //   volume += 0.05;
+      //   if(volume > 1) {
+      //     clearInterval(_volumeInterval);
+      //   }
+      //   player.volume = volume.toFixed(2);
+      // }
 
     });
 
@@ -244,7 +281,8 @@ $(function() {
     comment_box[0].innerHTML = n;
 
     let last_comment = comment_box[0].childNodes[comment_box[0].childNodes.length-1];
-    last_comment.className += ' last-comment';
+    //comment this line to remove error from console, come back soon ^-^
+    // last_comment.className += ' last-comment';
 
   }
 
