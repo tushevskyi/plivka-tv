@@ -61,7 +61,7 @@ body {
   position: absolute;
   right: 45px;
   bottom: 35px;
-  width: 120px;
+  width: 140px;
   text-align: right; }
   .button-block .button {
     position: relative;
@@ -70,12 +70,12 @@ body {
     .button-block .button img {
       width: 23px;
       height: 23px;
-      transition: all .4s ease-in-out; }
+      transition: transform .4s ease-in-out; }
       .button-block .button img:hover {
         transform: scale(1.2); }
   .button-block .button__mute-off {
     display: none;
-    padding-left: 94px; }
+    padding-left: 114px; }
     .button-block .button__mute-off img {
       width: 45px; }
   .button-block .button__quality {
@@ -84,14 +84,23 @@ body {
       display: inline-block;
       transition: all .4s ease-in-out;
       cursor: pointer; }
-      .button-block .button__quality .current-quality:hover {
-        transform: scale(1.2); }
+      .button-block .button__quality .current-quality img {
+        width: 24px;
+        height: 24px; }
     .button-block .button__quality .quality-holder {
       display: none;
       position: absolute;
-      top: 9.5px;
+      top: 9px;
       left: -50px;
       cursor: pointer; }
+      .button-block .button__quality .quality-holder .img_quality-holder {
+        margin: 0 5px; }
+        .button-block .button__quality .quality-holder .img_quality-holder:first-child img {
+          width: 30px;
+          height: 30px; }
+        .button-block .button__quality .quality-holder .img_quality-holder img {
+          width: 24px;
+          height: 24px; }
       .button-block .button__quality .quality-holder * {
         display: inline-block;
         font-size: 12px; }

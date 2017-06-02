@@ -15,7 +15,8 @@ $(function() {
 			btn_close_about 	= $('.button_close'),
 			share_donate_button = $('.button__open-share-donate'),
 			open_share_donate 	= $('.button__open-share-donate img'),
-			change_quality 		= $('.current-quality'),
+			current_quality 	= $('.current-quality'),
+			current_quality_img = $('.current-quality img'),
 			quality_holder      = $('.quality-holder'),
 			share_donate_block 	= $('.share-donate-block'),
 			fullscreen 			= $('.button__fullscreen img'),
@@ -30,7 +31,7 @@ $(function() {
 	btn_close_about.on('click',closeAboutEvent);
 	fullscreen.on('click', fullscreenEvent);
 	open_share_donate.on('click', openShareDonateEvent);
-	change_quality.on('click', openChangeQuality);
+	current_quality.on('click', openChangeQuality);
 	$document.on('click', documentClickEvent);
 	show_comments.on('click', showComments);
 
