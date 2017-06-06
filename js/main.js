@@ -15,8 +15,11 @@ $(function() {
 			btn_close_about 	= $('.button_close'),
 			share_donate_button = $('.button__open-share-donate'),
 			open_share_donate 	= $('.button__open-share-donate img'),
-			change_quality 		= $('.current-quality'),
+			current_quality 	= $('.current-quality'),
+			current_chanel      = $('.current-chanel'),
+			current_quality_img = $('.current-quality img'),
 			quality_holder      = $('.quality-holder'),
+			chanel__holder      = $('.chanel__holder'),
 			share_donate_block 	= $('.share-donate-block'),
 			fullscreen 			= $('.button__fullscreen img'),
 			$document 			= $(document),
@@ -30,7 +33,8 @@ $(function() {
 	btn_close_about.on('click',closeAboutEvent);
 	fullscreen.on('click', fullscreenEvent);
 	open_share_donate.on('click', openShareDonateEvent);
-	change_quality.on('click', openChangeQuality);
+	current_quality.on('click', openChangeQuality);
+	current_chanel.on('click', openChangeChanel);
 	$document.on('click', documentClickEvent);
 	show_comments.on('click', showComments);
 
@@ -89,12 +93,21 @@ $(function() {
 		e.stopPropagation();
 		animationInOut(share_donate_block);
 		closeMenuItem(quality_holder);
+		closeMenuItem(chanel__holder);
 	}
 
 	function openChangeQuality(e) {
 		e.stopPropagation();	
 		animationInOut(quality_holder);
 		closeMenuItem(share_donate_block);
+		closeMenuItem(chanel__holder);
+	}
+
+	function openChangeChanel(e) {
+		e.stopPropagation();	
+		animationInOut(chanel__holder);
+		closeMenuItem(share_donate_block);
+		closeMenuItem(quality_holder);	
 	}
 
 	function documentClickEvent() {
