@@ -12,15 +12,17 @@ $(function() {
 			main_logo 			= $('.main-logo'),
 			btn_mute_on 		= $('.button__mute-on'),
 			btn_mute_off 		= $('.button__mute-off'),
+			btn_mute_on_img 	= $('.button__mute-on img'),
+			btn_mute_off_img 	= $('.button__mute-off img'),
 			btn_close_about 	= $('.button_close'),
 			share_donate_button = $('.button__open-share-donate'),
 			open_share_donate 	= $('.button__open-share-donate img'),
 			current_quality 	= $('.current-quality'),
 			current_chanel      = $('.current-chanel'),
 			current_quality_img = $('.current-quality img'),
-			quality_holder      = $('.quality-holder'),
-			chanel__holder      = $('.chanel__holder'),
-			share_donate_block 	= $('.share-donate-block'),
+			quality_holder      = $('.quality__holder'),
+			chanel_holder       = $('.chanel__holder'),
+			share_donate_holder = $('.share-donate__holder'),
 			fullscreen 			= $('.button__fullscreen img'),
 			$document 			= $(document),
 			show_comments 		= $('.show_comments'),
@@ -28,8 +30,8 @@ $(function() {
 			comment_box 		= $('.comment-box');
 
 	btn_about.on('click', aboutEvent);
-	btn_mute_on.on('click', muteEvent);
-	btn_mute_off.on('click', muteOffEvent);
+	btn_mute_on_img.on('click', muteEvent);
+	btn_mute_off_img.on('click', muteOffEvent);
 	btn_close_about.on('click',closeAboutEvent);
 	fullscreen.on('click', fullscreenEvent);
 	open_share_donate.on('click', openShareDonateEvent);
@@ -91,32 +93,36 @@ $(function() {
 
 	function openShareDonateEvent(e) {
 		e.stopPropagation();
-		animationInOut(share_donate_block);
+		animationInOut(share_donate_holder);
 		closeMenuItem(quality_holder);
-		closeMenuItem(chanel__holder);
+		closeMenuItem(chanel_holder);
 	}
 
 	function openChangeQuality(e) {
 		e.stopPropagation();	
 		animationInOut(quality_holder);
-		closeMenuItem(share_donate_block);
-		closeMenuItem(chanel__holder);
+		closeMenuItem(share_donate_holder);
+		closeMenuItem(chanel_holder);
 	}
 
 	function openChangeChanel(e) {
 		e.stopPropagation();	
-		animationInOut(chanel__holder);
-		closeMenuItem(share_donate_block);
+		animationInOut(chanel_holder);
+		closeMenuItem(share_donate_holder);
 		closeMenuItem(quality_holder);	
 	}
 
 	function documentClickEvent() {
-		if (share_donate_block.hasClass('fadeInLeft')) {
-			share_donate_block
+		if (share_donate_holder.hasClass('fadeInLeft')) {
+			share_donate_holder
 				.removeClass('fadeInLeft')
 				.addClass('fadeOutRight');
 		} else if (quality_holder.hasClass('fadeInLeft')) {
 			quality_holder
+				.removeClass('fadeInLeft')
+				.addClass('fadeOutRight');
+		} else if (chanel_holder.hasClass('fadeInLeft')) {
+			chanel_holder
 				.removeClass('fadeInLeft')
 				.addClass('fadeOutRight');
 		}

@@ -72,7 +72,7 @@ body {
       height: 23px;
       transition: transform .4s ease-in-out; }
       .button-block .button img:hover {
-        transform: scale(1.2); }
+        transform: scale(1.15); }
   .button-block .button__mute-off {
     display: none;
     padding-left: 114px; }
@@ -87,21 +87,21 @@ body {
       .button-block .button__quality .current-quality img {
         width: 24px;
         height: 24px; }
-    .button-block .button__quality .quality-holder {
+    .button-block .button__quality .quality__holder {
       display: none;
       position: absolute;
       top: 9px;
       left: -50px;
       cursor: pointer; }
-      .button-block .button__quality .quality-holder .img_quality-holder {
-        margin: 0 5px; }
-        .button-block .button__quality .quality-holder .img_quality-holder:first-child img {
+      .button-block .button__quality .quality__holder .img_quality-holder {
+        margin: 0 3px; }
+        .button-block .button__quality .quality__holder .img_quality-holder:first-child img {
           width: 30px;
           height: 30px; }
-        .button-block .button__quality .quality-holder .img_quality-holder img {
+        .button-block .button__quality .quality__holder .img_quality-holder img {
           width: 24px;
           height: 24px; }
-      .button-block .button__quality .quality-holder * {
+      .button-block .button__quality .quality__holder * {
         display: inline-block; }
   .button-block .button__choose-chanel {
     font-size: 17px; }
@@ -127,12 +127,12 @@ body {
         display: inline-block; }
   .button-block .button__open-share-donate {
     position: relative; }
-    .button-block .button__open-share-donate .share-donate-block {
+    .button-block .button__open-share-donate .share-donate__holder {
       display: none;
       position: absolute;
       top: 3.5px;
       left: -50px; }
-      .button-block .button__open-share-donate .share-donate-block .button {
+      .button-block .button__open-share-donate .share-donate__holder .button {
         display: inline-block;
         margin-right: 10px;
         cursor: pointer; }

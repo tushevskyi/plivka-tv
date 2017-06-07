@@ -11,16 +11,14 @@ $(function() {
         isActive      = true,
         $add_message  = $('.add-message'),
         comment_box   = $('.comment-box'),
-        chanel_name    = "main";
+        chanel_name   = "main";
 
-  let socket         = new WebSocket(wsHost),
-      nv_src         = '',
-      nv_artist      = '',
-      nv_title       = '',
-      nv_desc        = '',
-      quality_string = 1080;
-
-  player.volume = 0;    
+  let   socket         = new WebSocket(wsHost),
+        nv_src         = '',
+        nv_artist      = '',
+        nv_title       = '',
+        nv_desc        = '',
+        quality_string = 480;
 
   $add_message
     .on('enterKey', sendMessage)
@@ -81,7 +79,7 @@ $(function() {
   }
 
   function showServerResponse(txt) {
-      alert(txt);
+      console.log(txt);
   }
 
   function parseServerResponse(txt) {
@@ -100,20 +98,66 @@ $(function() {
     }
   }
 
+  let chanel_holder      = $('.chanel__holder'),
+      current_chanel_img = $('.current-chanel img');
+
+  chanel_holder.on('click', changeChanel);
+
+  function changeChanel(e) {
+    let ukho    = 'js_ukho',
+        sxtn    = 'js_16',
+        main    = 'js_main',
+        payload = {};
+
+    switch(e.target.className) {
+      case ukho:
+        current_chanel_img[0].src = e.target.src;
+        payload.layer = "ukho";
+        payload.command = "get_full";
+        payload = JSON.stringify(payload);
+        socket.send(payload);
+        break;
+      case sxtn:
+        current_chanel_img[0].src = e.target.src;
+        payload.layer = "onesix";
+        payload.command = "get_full";
+        payload = JSON.stringify(payload);
+        socket.send(payload);
+        break;
+      case main:   
+        current_chanel_img[0].src = e.target.src;
+        payload.layer = "main";
+        payload.command = "get_full";
+        payload = JSON.stringify(payload);
+        socket.send(payload);
+        break;
+      }    
+  };     
+
+
+  player.volume = 0;          
+  $(player).one('play', function() {
+    // let _volumeInterval = setInterval(volumeUp, 350),
+    //     volume          = 0;
+      
+    // function volumeUp() {
+    //   volume += 0.05;
+    //   if(volume > 1) {
+    //     clearInterval(_volumeInterval);
+    //   }
+    //   player.volume = volume.toFixed(2);
+    // }
+
+  });      
+
   function setupVideo(j) {
-    let full_hd_quality     = $('.full-hd_quality'),
-        hd_quality          = $('.hd_quality'),
-        sd_quality          = $('.sd_quality'),
-        quality_holder      = $('.quality-holder'),
+
+    let quality_holder      = $('.quality__holder'),
         current_quality_img = $('.current-quality img'),
-        chanel__holder      = $('.chanel__holder'),
         sd_img_src          = 'images/icons/SD_icon.svg',
         hd_img_src          = 'images/icons/HD_icon.svg',
-        fhd_img_src         = 'images/icons/HD_plus_icon.svg',
-        main_share_btn      = $('.navigation .button_share');
-
-
-        
+        fhd_img_src         = 'images/icons/HD_plus_icon.svg';
+    
     quality_holder.on('click', changeQuality);    
 
     function changeQuality(e) {
@@ -165,41 +209,6 @@ $(function() {
 
     };
 
-    chanel__holder.on('click', changeChanel);
-
-    function changeChanel(e) {
-      let ukho    = 'js_ukho',
-          sxtn    = 'js_16',
-          main    = 'js_main',
-          payload = {};
-      
-      if(e.target.className === ukho) {
-        payload.layer = "ukho";
-        payload.command = "get_full";
-        payload = JSON.stringify(payload);
-        socket.send(payload);
-        
-        console.log(payload);
-      } else if(e.target.className === sxtn) {
-        payload.layer = "onesix";
-        payload.command = "get_full";
-        payload = JSON.stringify(payload);
-        socket.send(payload);
-      
-        console.log(payload);
-      } else {
-        payload.layer = "main";
-        payload.command = "get_full";
-        payload = JSON.stringify(payload);
-        socket.send(payload);
-      
-        console.log(payload);
-      }
-
-    };
-
-
-
 
     var startTime = j.current.start_time;
     var fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + j.current.url;
@@ -210,21 +219,6 @@ $(function() {
     } else {
       setSharedUrl('/shared.html');
     }
-
-    $(player).one('play', function() {
-
-      // let _volumeInterval = setInterval(volumeUp, 350),
-      //     volume          = 0;
-        
-      // function volumeUp() {
-      //   volume += 0.05;
-      //   if(volume > 1) {
-      //     clearInterval(_volumeInterval);
-      //   }
-      //   player.volume = volume.toFixed(2);
-      // }
-
-    });
 
     // Нужно добавить в DOM отображение artist + title + description
     // artist.innerHTML = j.current.artist;
@@ -239,6 +233,7 @@ $(function() {
       console.log('Next video: ' + j.next.url);
     */    
 
+    let main_share_btn = $('.navigation .button_share');
     main_share_btn.on('click', fbShare);
 
     function fbShare() {
@@ -252,7 +247,7 @@ $(function() {
           href: 'http://plivka.tv/shared.html?v=' + j.current.url
       }, function(response){});
     }
-  }
+  };
 
 
   function setSharedUrl(shared_path) {
