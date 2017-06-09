@@ -10,15 +10,16 @@ $(function() {
         desc          = document.getElementById('description'),
         isActive      = true,
         $add_message  = $('.add-message'),
-        comment_box   = $('.comment-box'),
-        chanel_name   = "main";
+        comment_box   = $('.comment-box');
+        // chanel_name   = "main";
 
   let   socket         = new WebSocket(wsHost),
         nv_src         = '',
         nv_artist      = '',
         nv_title       = '',
         nv_desc        = '',
-        quality_string = 480;
+        videoObj,
+        messageObj;
 
   $add_message
     .on('enterKey', sendMessage)
@@ -44,7 +45,7 @@ $(function() {
     request_next();
   }
 
-  function sendSock(command) {
+  function sendSock(command,chanel_name) {
     let payload = {};
 
     payload.command = command;
@@ -55,20 +56,25 @@ $(function() {
 
   function setupWS() {
     if (socket) {
+
       socket.onopen = function() {
-        sendSock('get_full');
-        sendSock('get_messages');
+        sendSock('get_full','main');
+        sendSock('get_messages','main');
       };
+
       socket.onmessage = function(msg) {
         parseServerResponse(msg.data);
       };
+
       socket.onclose = function() {
         showServerResponse("We can't connect to our player right now, please refresh page or try again later. Sorry.");
       };
+
       socket.onerror = function() {
         console.log('WS error.');
         alert("We've encountered some problems, please reload page :(");
       };
+
     } else {
       console.log("invalid socket");
     }
@@ -83,21 +89,26 @@ $(function() {
   }
 
   function parseServerResponse(txt) {
-    var j = JSON.parse(txt);
-    console.log(j);
+    let receivedDataObj = JSON.parse(txt);
 
-    if (j.type == 'video_full') {
-      setupVideo(j);
-    } else if (j.type == 'video_next') {
-      setupNext(j);
-    } else if (j.type == 'message_list') {
-      updateMessages(j);
+    if (receivedDataObj.type === 'video_full') {
+      videoObj = receivedDataObj;
+      console.log(videoObj);
+      setupVideo(videoObj);
+    } else if (receivedDataObj.type === 'video_next') {
+      setupNext(receivedDataObj);
+    } else if (receivedDataObj.type === 'message_list') {
+      messageObj = receivedDataObj;
+      console.log(messageObj);
+      updateMessages(messageObj);
     } else {
       alert('Error parsing server response :(');
-      alert(j);
+      alert(receivedDataObj);
     }
   }
 
+
+  //change chanel
   let chanel_holder      = $('.chanel__holder'),
       current_chanel_img = $('.current-chanel img');
 
@@ -112,107 +123,110 @@ $(function() {
     switch(e.target.className) {
       case ukho:
         current_chanel_img[0].src = e.target.src;
-        payload.layer = "ukho";
-        payload.command = "get_full";
-        payload = JSON.stringify(payload);
-        socket.send(payload);
+        sendSock("get_full","ukho");
         break;
       case sxtn:
         current_chanel_img[0].src = e.target.src;
-        payload.layer = "onesix";
-        payload.command = "get_full";
-        payload = JSON.stringify(payload);
-        socket.send(payload);
+        sendSock("get_full","onesix");
         break;
       case main:   
         current_chanel_img[0].src = e.target.src;
-        payload.layer = "main";
-        payload.command = "get_full";
-        payload = JSON.stringify(payload);
-        socket.send(payload);
+        sendSock("get_full","main");
         break;
       }    
   };     
 
-
+  //player
   player.volume = 0;          
-  $(player).one('play', function() {
-    // let _volumeInterval = setInterval(volumeUp, 350),
-    //     volume          = 0;
+  $(player).one('play', soundFadeOut);
+
+  function soundFadeOut() {
+    let _volumeInterval = setInterval(volumeUp, 350),
+        volume          = 0;
       
-    // function volumeUp() {
-    //   volume += 0.05;
-    //   if(volume > 1) {
-    //     clearInterval(_volumeInterval);
-    //   }
-    //   player.volume = volume.toFixed(2);
-    // }
-
-  });      
-
-  function setupVideo(j) {
-
-    let quality_holder      = $('.quality__holder'),
-        current_quality_img = $('.current-quality img'),
-        sd_img_src          = 'images/icons/SD_icon.svg',
-        hd_img_src          = 'images/icons/HD_icon.svg',
-        fhd_img_src         = 'images/icons/HD_plus_icon.svg';
-    
-    quality_holder.on('click', changeQuality);    
-
-    function changeQuality(e) {
-
-      switch(e.target.className) {
-        case 'js_sd': 
-          quality_string = 480;
-          fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + j.current.url;
-          player.src = fullUrl + '#t=' + player.currentTime;
-          current_quality_img.attr('src', sd_img_src);
-          break;
-        case 'js_hd':
-          quality_string = 720;
-          fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + j.current.url;
-          player.src = fullUrl + '#t=' + player.currentTime;
-          current_quality_img.attr('src', hd_img_src);
-          break;
-        case 'js_fhd':
-          quality_string = 1080;
-          fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + j.current.url;
-          player.src = fullUrl + '#t=' + player.currentTime;
-          current_quality_img.attr('src', fhd_img_src);
-          break;
+    function volumeUp() {
+      volume += 0.05;
+      if(volume > 1) {
+        clearInterval(_volumeInterval);
       }
+      player.volume = volume.toFixed(2);
+    }
 
-      let quality_img_src   = current_quality_img.attr('src');
+  };
 
-      let checkIcon = src => {
-        if(quality_img_src === src) {
-          current_quality_img.css({
-            'width':'30px',
-            'height': '30px',
-            'margin-right': '-8px',
-            'margin-top': '-3px',
-            'margin-bottom': '-3px'
-          });
-        } else {
-          current_quality_img.css({
-            'width':'24px',
-            'height': '24px',
-            'margin-right': '0',
-            'margin-top': '0',
-            'margin-bottom': '0'
-          });
-        }
+  let quality_holder      = $('.quality__holder'),
+      current_quality_img = $('.current-quality img'),
+      sd_img_src          = 'images/icons/SD_icon.svg',
+      hd_img_src          = 'images/icons/HD_icon.svg',
+      fhd_img_src         = 'images/icons/HD_plus_icon.svg',
+      quality_string      = 480;
+
+  quality_holder.on('click', changeQuality);
+
+  function changeQuality(e) {
+    console.log(videoObj);
+
+    console.log("player: " + player.currentTime);
+
+    let player_currentTime = player.currentTime;  
+    let fullUrl            = "";
+
+    switch(e.target.className) {
+      case 'js_sd': 
+        quality_string = 480;
+        fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.current.url;
+        player.src = fullUrl + '#t=' + player_currentTime;
+        current_quality_img.attr('src', sd_img_src);
+        break;
+      case 'js_hd':
+        quality_string = 720;
+        fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.current.url;
+        player.src = fullUrl + '#t=' + player_currentTime;
+        current_quality_img.attr('src', hd_img_src);
+        break;
+      case 'js_fhd':
+        quality_string = 1080;
+        fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.current.url;
+        player.src = fullUrl + '#t=' + player_currentTime;
+        current_quality_img.attr('src', fhd_img_src);
+        break;
+    }
+
+    let quality_img_src = current_quality_img.attr('src');
+
+    let checkIcon = src => {
+      if(quality_img_src === src) {
+        current_quality_img.css({
+          'width':'30px',
+          'height': '30px',
+          'margin-right': '-8px',
+          'margin-top': '-3px',
+          'margin-bottom': '-3px'
+        });
+      } else {
+        current_quality_img.css({
+          'width':'24px',
+          'height': '24px',
+          'margin-right': '0',
+          'margin-top': '0',
+          'margin-bottom': '0'
+        });
       }
+    }
 
-      checkIcon(fhd_img_src);
+    checkIcon(fhd_img_src);
 
-    };
+  }      
 
-
-    var startTime = j.current.start_time;
-    var fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + j.current.url;
+  function setupVideo(videoObj) {
+    console.log(videoObj);
+    var startTime = videoObj.current.start_time;
+    var fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.current.url;
     player.src = fullUrl + '#t=' + startTime;
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // player.src = null;
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     if (window.location.pathname === '/index.html') {
       player.src = fullUrl + '#t=' + startTime;
@@ -221,33 +235,34 @@ $(function() {
     }
 
     // Нужно добавить в DOM отображение artist + title + description
-    // artist.innerHTML = j.current.artist;
-    // title.innerHTML = j.current.title;
-    nv_src = "http://cdn.plivka.tv/" + quality_string + "/" + j.next.url,
-    nv_artist = j.next.artist,
-    nv_title = j.next.title,
-    nv_desc = j.next.url;
+    // artist.innerHTML = receivedDataObj.current.artist;
+    // title.innerHTML = receivedDataObj.current.title;
+    nv_src = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.next.url,
+    nv_artist = videoObj.next.artist,
+    nv_title = videoObj.next.title,
+    nv_desc = videoObj.next.url;
 
     /*
-      console.log('Current video: ' + j.current.url + '#t=' + startTime);
-      console.log('Next video: ' + j.next.url);
-    */    
+      console.log('Current video: ' + videoObj.current.url + '#t=' + startTime);
+      console.log('Next video: ' + videoObj.next.url);
+    */ 
+  }
 
-    let main_share_btn = $('.navigation .button_share');
-    main_share_btn.on('click', fbShare);
 
-    function fbShare() {
-      FB.ui({
-          display: 'popup',
-          method: 'share',
-          description: "plivka tv",
-          title: j.current.title,
-          link: '',
-          picture: '',
-          href: 'http://plivka.tv/shared.html?v=' + j.current.url
-      }, function(response){});
-    }
-  };
+  let main_share_btn = $('.navigation .button_share');
+  main_share_btn.on('click', fbShare);
+
+  function fbShare() {
+    FB.ui({
+        display: 'popup',
+        method: 'share',
+        description: "plivka tv",
+        title: videoObj.current.title,
+        link: '',
+        picture: '',
+        href: 'http://plivka.tv/shared.html?v=' + videoObj.current.url
+    }, function(response){});
+  }
 
 
   function setSharedUrl(shared_path) {
@@ -262,9 +277,8 @@ $(function() {
   }
 
 
-
-  function updateMessages(j) {
-    let messages = JSON.parse(j.messages),
+  function updateMessages(messageObj) {
+    let messages = JSON.parse(messageObj.messages),
         n = "";
 
     for (var i = 0; i < messages.length; i++) {
@@ -281,12 +295,12 @@ $(function() {
 
   }
 
-  function setupNext(j) {
-      nv_src = "http://cdn.plivka.tv/" + quality_string + "/" + j.current.url;
-      nv_artist = j.next.artist;
-      nv_title = j.next.title;
-      nv_description = j.next.description;
-	    console.log('Next video: ' + j.next.url);
+  function setupNext(receivedDataObj) {
+      nv_src = "http://cdn.plivka.tv/" + quality_string + "/" + receivedDataObj.current.url;
+      nv_artist = receivedDataObj.next.artist;
+      nv_title = receivedDataObj.next.title;
+      nv_description = receivedDataObj.next.description;
+	    console.log('Next video: ' + receivedDataObj.next.url);
   }
 
   function sendMessage() {
