@@ -11,19 +11,20 @@ $(function() {
         isActive      = true,
         $add_message  = $('.add-message'),
         comment_box   = $('.comment-box');
-        // chanel_name   = "main";
 
   let   socket         = new WebSocket(wsHost),
         nv_src         = '',
         nv_artist      = '',
         nv_title       = '',
         nv_desc        = '',
+        chanel_name    = "main",
         videoObj,
         messageObj;
 
+
   $add_message
-    .on('enterKey', sendMessage)
-    .on('keyup', keyupEvent);
+    .on('keyup', keyupEvent)
+    .on('enterKey', sendMessage);
 
   function keyupEvent(e) {
     if(e.keyCode === 13) {
@@ -58,8 +59,8 @@ $(function() {
     if (socket) {
 
       socket.onopen = function() {
-        sendSock('get_full','main');
-        sendSock('get_messages','main');
+        sendSock('get_full',chanel_name);
+        sendSock('get_messages',chanel_name);
       };
 
       socket.onmessage = function(msg) {
@@ -93,7 +94,6 @@ $(function() {
 
     if (receivedDataObj.type === 'video_full') {
       videoObj = receivedDataObj;
-      console.log(videoObj);
       setupVideo(videoObj);
     } else if (receivedDataObj.type === 'video_next') {
       setupNext(receivedDataObj);
@@ -102,8 +102,8 @@ $(function() {
       console.log(messageObj);
       updateMessages(messageObj);
     } else {
-      alert('Error parsing server response :(');
-      alert(receivedDataObj);
+      console.log('Error parsing server response :(');
+      console.log(receivedDataObj);
     }
   }
 
@@ -122,21 +122,26 @@ $(function() {
 
     switch(e.target.className) {
       case ukho:
+        chanel_name = 'ukho'
         current_chanel_img[0].src = e.target.src;
-        sendSock("get_full","ukho");
+        sendSock("get_full",chanel_name);
+        sendSock('get_messages',chanel_name);
         break;
       case sxtn:
+        chanel_name = "onesix";
         current_chanel_img[0].src = e.target.src;
-        sendSock("get_full","onesix");
+        sendSock("get_full",chanel_name);
+        sendSock('get_messages',chanel_name);
         break;
       case main:   
+        chanel_name = "main";
         current_chanel_img[0].src = e.target.src;
-        sendSock("get_full","main");
+        sendSock("get_full",chanel_name);
+        sendSock('get_messages',chanel_name);
         break;
       }    
   };     
 
-  //player
   player.volume = 0;          
   $(player).one('play', soundFadeOut);
 
@@ -165,7 +170,6 @@ $(function() {
 
   function changeQuality(e) {
     console.log(videoObj);
-
     console.log("player: " + player.currentTime);
 
     let player_currentTime = player.currentTime;  
@@ -248,6 +252,14 @@ $(function() {
     */ 
   }
 
+  function setupNext(receivedDataObj) {
+      nv_src = "http://cdn.plivka.tv/" + quality_string + "/" + receivedDataObj.next.url;
+      nv_artist = receivedDataObj.next.artist;
+      nv_title = receivedDataObj.next.title;
+      nv_description = receivedDataObj.next.description;
+      console.log('Next video: ' + receivedDataObj.next.url);
+  }
+
 
   let main_share_btn = $('.navigation .button_share');
   main_share_btn.on('click', fbShare);
@@ -279,7 +291,7 @@ $(function() {
 
   function updateMessages(messageObj) {
     let messages = JSON.parse(messageObj.messages),
-        n = "";
+        n = "";    
 
     for (var i = 0; i < messages.length; i++) {
       let l = "<div class='comment'><div class='comment-text'><p> " + messages[i] + "</p></div></div>";
@@ -291,32 +303,25 @@ $(function() {
 
     let last_comment = comment_box[0].childNodes[comment_box[0].childNodes.length-1];
     //comment this line to remove error from console, come back soon ^-^
-    // last_comment.className += ' last-comment';
+    last_comment.className += ' last-comment';
 
-  }
-
-  function setupNext(receivedDataObj) {
-      nv_src = "http://cdn.plivka.tv/" + quality_string + "/" + receivedDataObj.current.url;
-      nv_artist = receivedDataObj.next.artist;
-      nv_title = receivedDataObj.next.title;
-      nv_description = receivedDataObj.next.description;
-	    console.log('Next video: ' + receivedDataObj.next.url);
   }
 
   function sendMessage() {
-    if (socket) {
-      let message_text = document.getElementsByClassName('add-message')[0],
-          payload = {};
+    let message_text = document.getElementsByClassName('add-message')[0],
+        payload = {};
 
-      payload.command = 'new_message';
-      payload.message = {
-        'sender':'',
-        'text':message_text.value,
-      };
-      payload = JSON.stringify(payload);
-      socket.send(payload);
-      message_text.value = "";
-    }
+    payload.command = 'new_message';
+    payload.layer = chanel_name;
+    payload.message = {
+      'sender':'',
+      'text':message_text.value,
+    };
+    
+    payload = JSON.stringify(payload);
+    socket.send(payload);
+
+    message_text.value = "";
   }
 
 });

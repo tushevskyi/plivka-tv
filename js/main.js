@@ -42,8 +42,14 @@ $(function() {
 
 	function aboutEvent() {
 		about.css('display','block');
-		navigation.css('opacity','0');
+		navigation.css('display','none');
 		main_logo.css('display','none');
+	}
+
+	function closeAboutEvent() {
+		about.css('display','none');
+		navigation.css('display','block');
+		main_logo.css('display','block');
 	}
 
 	function muteEvent() {
@@ -56,12 +62,6 @@ $(function() {
 		btn_mute_off.css('display','none');
 		btn_mute_on.css('display','block');
 		video.prop('muted',0);
-	}
-
-	function closeAboutEvent() {
-		about.css('display','none');
-		navigation.css('opacity','1');
-		main_logo.css('display','block');
 	}
 
 	function fullscreenEvent() {
