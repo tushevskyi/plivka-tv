@@ -17,7 +17,6 @@ $(function() {
         nv_artist      = '',
         nv_title       = '',
         nv_desc        = '',
-        chanel_name    = "main",
         videoObj,
         messageObj;
 
@@ -45,6 +44,10 @@ $(function() {
     nv_src = '';
     request_next();
   }
+
+
+
+  let chanel_name = "main";
 
   function sendSock(command,chanel_name) {
     let payload = {};
@@ -115,6 +118,7 @@ $(function() {
   chanel_holder.on('click', changeChanel);
 
   function changeChanel(e) {
+
     let ukho    = 'js_ukho',
         sxtn    = 'js_16',
         main    = 'js_main',
@@ -122,10 +126,10 @@ $(function() {
 
     switch(e.target.className) {
       case ukho:
-        chanel_name = 'ukho'
+        chanel_name = 'ukho';
         current_chanel_img[0].src = e.target.src;
-        sendSock("get_full",chanel_name);
-        sendSock('get_messages',chanel_name);
+        sendSock("get_full", chanel_name);
+        sendSock('get_messages', chanel_name);
         break;
       case sxtn:
         chanel_name = "onesix";
@@ -146,16 +150,16 @@ $(function() {
   $(player).one('play', soundFadeOut);
 
   function soundFadeOut() {
-    let _volumeInterval = setInterval(volumeUp, 350),
-        volume          = 0;
+    // let _volumeInterval = setInterval(volumeUp, 350),
+    //     volume          = 0;
       
-    function volumeUp() {
-      volume += 0.05;
-      if(volume > 1) {
-        clearInterval(_volumeInterval);
-      }
-      player.volume = volume.toFixed(2);
-    }
+    // function volumeUp() {
+    //   volume += 0.05;
+    //   if(volume > 1) {
+    //     clearInterval(_volumeInterval);
+    //   }
+    //   player.volume = volume.toFixed(2);
+    // }
 
   };
 
@@ -172,26 +176,26 @@ $(function() {
     console.log(videoObj);
     console.log("player: " + player.currentTime);
 
-    let player_currentTime = player.currentTime;  
-    let fullUrl            = "";
+    let video_currentTime = player.currentTime || videoObj.current.start_time,
+        fullUrl           = "";
 
     switch(e.target.className) {
       case 'js_sd': 
         quality_string = 480;
         fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.current.url;
-        player.src = fullUrl + '#t=' + player_currentTime;
+        player.src = fullUrl + '#t=' + video_currentTime ;
         current_quality_img.attr('src', sd_img_src);
         break;
       case 'js_hd':
         quality_string = 720;
         fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.current.url;
-        player.src = fullUrl + '#t=' + player_currentTime;
+        player.src = fullUrl + '#t=' + video_currentTime;
         current_quality_img.attr('src', hd_img_src);
         break;
       case 'js_fhd':
         quality_string = 1080;
         fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.current.url;
-        player.src = fullUrl + '#t=' + player_currentTime;
+        player.src = fullUrl + '#t=' + video_currentTime;
         current_quality_img.attr('src', fhd_img_src);
         break;
     }
@@ -250,6 +254,31 @@ $(function() {
       console.log('Current video: ' + videoObj.current.url + '#t=' + startTime);
       console.log('Next video: ' + videoObj.next.url);
     */ 
+
+    var req = new XMLHttpRequest();
+    let video = videoObj.next.url;
+    let next_vid_url = `http://cdn.plivka.tv/480/${video}#t=0`;
+    
+    req.open('GET', next_vid_url , true);
+    req.responseType = 'blob';
+
+    req.onload = function() {
+       // Onload is triggered even on 404
+       // so we need to check the status code
+       if (this.status === 200) {
+          var videoBlob = this.response;
+          var vid = URL.createObjectURL(videoBlob); // IE10+
+          // Video is now downloaded
+          // and we can set it as source on the video element
+          player.src = vid;
+          console.log(video.src);
+       }
+    }
+    req.onerror = function() {
+       // Error
+    }
+
+    req.send();
   }
 
   function setupNext(receivedDataObj) {
