@@ -150,16 +150,16 @@ $(function() {
   $(player).one('play', soundFadeOut);
 
   function soundFadeOut() {
-    // let _volumeInterval = setInterval(volumeUp, 350),
-    //     volume          = 0;
+    let _volumeInterval = setInterval(volumeUp, 350),
+        volume          = 0;
       
-    // function volumeUp() {
-    //   volume += 0.05;
-    //   if(volume > 1) {
-    //     clearInterval(_volumeInterval);
-    //   }
-    //   player.volume = volume.toFixed(2);
-    // }
+    function volumeUp() {
+      volume += 0.05;
+      if(volume > 1) {
+        clearInterval(_volumeInterval);
+      }
+      player.volume = volume.toFixed(2);
+    }
 
   };
 
@@ -254,31 +254,6 @@ $(function() {
       console.log('Current video: ' + videoObj.current.url + '#t=' + startTime);
       console.log('Next video: ' + videoObj.next.url);
     */ 
-
-    var req = new XMLHttpRequest();
-    let video = videoObj.next.url;
-    let next_vid_url = `http://cdn.plivka.tv/480/${video}#t=0`;
-    
-    req.open('GET', next_vid_url , true);
-    req.responseType = 'blob';
-
-    req.onload = function() {
-       // Onload is triggered even on 404
-       // so we need to check the status code
-       if (this.status === 200) {
-          var videoBlob = this.response;
-          var vid = URL.createObjectURL(videoBlob); // IE10+
-          // Video is now downloaded
-          // and we can set it as source on the video element
-          player.src = vid;
-          console.log(video.src);
-       }
-    }
-    req.onerror = function() {
-       // Error
-    }
-
-    req.send();
   }
 
   function setupNext(receivedDataObj) {
