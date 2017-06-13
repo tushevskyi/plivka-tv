@@ -150,16 +150,16 @@ $(function() {
   $(player).one('play', soundFadeOut);
 
   function soundFadeOut() {
-    let _volumeInterval = setInterval(volumeUp, 350),
-        volume          = 0;
+    // let _volumeInterval = setInterval(volumeUp, 350),
+    //     volume          = 0;
       
-    function volumeUp() {
-      volume += 0.05;
-      if(volume > 1) {
-        clearInterval(_volumeInterval);
-      }
-      player.volume = volume.toFixed(2);
-    }
+    // function volumeUp() {
+    //   volume += 0.05;
+    //   if(volume > 1) {
+    //     clearInterval(_volumeInterval);
+    //   }
+    //   player.volume = volume.toFixed(2);
+    // }
 
   };
 
@@ -254,6 +254,40 @@ $(function() {
       console.log('Current video: ' + videoObj.current.url + '#t=' + startTime);
       console.log('Next video: ' + videoObj.next.url);
     */ 
+
+
+    let video = videoObj.next.url;
+    let next_vid_url = `http://cdn.plivka.tv/1080/${video}#t=0`;
+
+    let req = new XMLHttpRequest();
+    req.open('GET', "http://cdn.plivka.tv/480/6FQTX5ZYNL.mp4", true);
+    req.responseType = 'blob';
+
+    req.onload = function() {
+       // Onload is triggered even on 404
+       // so we need to check the status code
+       if (this.status === 200) {
+          var videoBlob = this.response;
+          var vid = URL.createObjectURL(videoBlob); // IE10+
+          // Video is now downloaded
+          // and we can set it as source on the video element
+          player.src = vid;
+       }
+       console.log(req.statusText);
+    }
+
+    req.onprogress = function () {
+      console.log('LOADING', req.status);
+    };
+
+    req.onerror = function() {
+       // Error
+    }
+
+    // req.send();
+
+  
+
   }
 
   function setupNext(receivedDataObj) {
@@ -268,6 +302,8 @@ $(function() {
   let main_share_btn = $('.navigation .button_share');
   main_share_btn.on('click', fbShare);
 
+  //videoObj
+
   function fbShare() {
     FB.ui({
         display: 'popup',
@@ -275,7 +311,7 @@ $(function() {
         description: "plivka tv",
         title: videoObj.current.title,
         link: '',
-        picture: '',
+        picture: 'http://plivka.tv/images/plivka-log-fb.png',
         href: 'http://plivka.tv/shared.html?v=' + videoObj.current.url
     }, function(response){});
   }
@@ -288,7 +324,7 @@ $(function() {
 
     if (url_pathname === shared_path) {
       video_name = video_pathname.substring(3);
-      player.src = "http://cdn.plivka.tv/" + quality_string + "/" + video_name;
+      player.src = "http://cdn.plivka.tv/" + quality_string + "/" + video_name + '#t=' + video_currentTime;
     }
   }
 
@@ -306,7 +342,7 @@ $(function() {
     comment_box[0].innerHTML = n;
 
     let last_comment = comment_box[0].childNodes[comment_box[0].childNodes.length-1];
-    //comment this line to remove error from console, come back soon ^-^
+    // comment this line to remove error from console, come back soon ^-^
     last_comment.className += ' last-comment';
 
   }
