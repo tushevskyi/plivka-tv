@@ -230,16 +230,16 @@ $(function() {
     console.log(videoObj);
     var startTime = videoObj.current.start_time;
     var fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.current.url;
-    player.src = fullUrl + '#t=' + startTime;
+    // player.src = fullUrl + '#t=' + startTime;
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // player.src = null;
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    if (window.location.pathname === '') {
+    if (window.location.pathname !== '/shared.html') {
       player.src = fullUrl + '#t=' + startTime;
     } else {
-      setSharedUrl('/shared.html');
+      setSharedUrl('/shared.html');  
     }
 
     // Нужно добавить в DOM отображение artist + title + description
@@ -256,37 +256,35 @@ $(function() {
     */ 
 
 
-    let video = videoObj.next.url;
-    let next_vid_url = `http://cdn.plivka.tv/1080/${video}#t=0`;
+    // let video = videoObj.next.url;
+    // let next_vid_url = `http://cdn.plivka.tv/1080/${video}#t=0`;
 
-    let req = new XMLHttpRequest();
-    req.open('GET', "http://cdn.plivka.tv/480/6FQTX5ZYNL.mp4", true);
-    req.responseType = 'blob';
+    // let req = new XMLHttpRequest();
+    // req.open('GET', "http://cdn.plivka.tv/480/6FQTX5ZYNL.mp4", true);
+    // req.responseType = 'blob';
 
-    req.onload = function() {
-       // Onload is triggered even on 404
-       // so we need to check the status code
-       if (this.status === 200) {
-          var videoBlob = this.response;
-          var vid = URL.createObjectURL(videoBlob); // IE10+
-          // Video is now downloaded
-          // and we can set it as source on the video element
-          player.src = vid;
-       }
-       console.log(req.statusText);
-    }
+    // req.onload = function() {
+    //    // Onload is triggered even on 404
+    //    // so we need to check the status code
+    //    if (this.status === 200) {
+    //       var videoBlob = this.response;
+    //       var vid = URL.createObjectURL(videoBlob); // IE10+
+    //       // Video is now downloaded
+    //       // and we can set it as source on the video element
+    //       player.src = vid;
+    //    }
+    //    console.log(req.statusText);
+    // }
 
-    req.onprogress = function () {
-      console.log('LOADING', req.status);
-    };
+    // req.onprogress = function () {
+    //   console.log('LOADING', req.status);
+    // };
 
-    req.onerror = function() {
-       // Error
-    }
+    // req.onerror = function() {
+    //    // Error
+    // }
 
     // req.send();
-
-  
 
   }
 
@@ -318,14 +316,13 @@ $(function() {
 
 
   function setSharedUrl(shared_path) {
-    let url_pathname   = window.location.pathname,
-        video_pathname = window.location.search,
+    let video_pathname = window.location.search,
+        stateObj       = { foo: "bar" };
         video_name;
 
-    if (url_pathname === shared_path) {
-      video_name = video_pathname.substring(3);
-      player.src = "http://cdn.plivka.tv/" + 720 + "/" + video_name;
-    }
+    video_name = video_pathname.substring(3);
+    player.src = "http://cdn.plivka.tv/" + 720 + "/" + video_name;  
+    history.pushState(stateObj, null, "/");
   }
 
 
@@ -342,8 +339,10 @@ $(function() {
     comment_box[0].innerHTML = n;
 
     let last_comment = comment_box[0].childNodes[comment_box[0].childNodes.length-1];
-    //comment this line to remove error from console, come back soon ^-^
-    last_comment.className += ' last-comment';
+
+    if(last_comment) {
+      last_comment.className += ' last-comment';
+    }
 
   }
 
