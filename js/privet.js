@@ -161,7 +161,7 @@ $(function() {
     //   player.volume = volume.toFixed(2);
     // }
 
-  };
+  }
 
   let quality_holder      = $('.quality__holder'),
       current_quality_img = $('.current-quality img'),
@@ -324,8 +324,14 @@ $(function() {
 
     if (url_pathname === shared_path) {
       video_name = video_pathname.substring(3);
-      player.src = "http://cdn.plivka.tv/" + quality_string + "/" + video_name + '#t=' + video_currentTime;
+      player.src = "http://cdn.plivka.tv/" + quality_string + "/" + video_name;
+      removeHash();
     }
+  }
+
+
+  function removeHash() { 
+    history.pushState("", document.title, window.location.pathname + window.location.search);
   }
 
 
@@ -342,7 +348,7 @@ $(function() {
     comment_box[0].innerHTML = n;
 
     let last_comment = comment_box[0].childNodes[comment_box[0].childNodes.length-1];
-    // comment this line to remove error from console, come back soon ^-^
+    //comment this line to remove error from console, come back soon ^-^
     last_comment.className += ' last-comment';
 
   }
