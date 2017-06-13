@@ -142,7 +142,7 @@ $(function() {
 	 	add_message = $('.add-message'),
 		fosuc_check = true;
 
-	$document.on('mousemove', showAllEvent);
+	$document.on('mousemove touchstart', showAllEvent);
 
 	add_message.on('focus', onFocusEvent);
 	add_message.on('blur', onBlurEvent);
