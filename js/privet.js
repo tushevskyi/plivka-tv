@@ -128,18 +128,21 @@ $(function() {
       case ukho:
         chanel_name = 'ukho';
         current_chanel_img[0].src = e.target.src;
+        player.pause();
         sendSock("get_full", chanel_name);
         sendSock('get_messages', chanel_name);
         break;
       case sxtn:
         chanel_name = "onesix";
         current_chanel_img[0].src = e.target.src;
+        player.pause();
         sendSock("get_full",chanel_name);
         sendSock('get_messages',chanel_name);
         break;
       case main:   
         chanel_name = "main";
         current_chanel_img[0].src = e.target.src;
+        player.pause();
         sendSock("get_full",chanel_name);
         sendSock('get_messages',chanel_name);
         break;
