@@ -168,7 +168,7 @@ $(function() {
       sd_img_src          = 'images/icons/SD_icon.svg',
       hd_img_src          = 'images/icons/HD_icon.svg',
       fhd_img_src         = 'images/icons/HD_plus_icon.svg',
-      quality_string      = 480;
+      quality_string      = 720;
 
   quality_holder.on('click', changeQuality);
 
