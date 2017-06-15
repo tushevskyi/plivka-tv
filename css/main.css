@@ -61,7 +61,7 @@ body {
   position: absolute;
   right: 45px;
   bottom: 35px;
-  width: 140px;
+  width: 130px;
   text-align: right; }
   .button-block .button {
     position: relative;
@@ -95,7 +95,7 @@ body {
       cursor: pointer; }
       .button-block .button__quality .quality__holder .img_quality-holder {
         margin: 0 3px; }
-        .button-block .button__quality .quality__holder .img_quality-holder:first-child img {
+        .button-block .button__quality .quality__holder .img_quality-holder:last-child img {
           width: 30px;
           height: 30px; }
         .button-block .button__quality .quality__holder .img_quality-holder img {
@@ -117,9 +117,10 @@ body {
       position: absolute;
       top: 11px;
       left: -50px;
-      cursor: pointer; }
+      cursor: pointer;
+      width: 128px; }
       .button-block .button__choose-chanel .chanel__holder .img_chanel__holder {
-        margin: 0 5px; }
+        margin: 0 3px; }
         .button-block .button__choose-chanel .chanel__holder .img_chanel__holder img {
           width: 24px;
           height: 24px; }
@@ -131,7 +132,8 @@ body {
       display: none;
       position: absolute;
       top: 3.5px;
-      left: -50px; }
+      left: -50px;
+      width: 140px; }
       .button-block .button__open-share-donate .share-donate__holder .button {
         display: inline-block;
         margin-right: 10px;
