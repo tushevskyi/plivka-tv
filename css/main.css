@@ -71,8 +71,8 @@ body {
       width: 23px;
       height: 23px;
       transition: transform .4s ease-in-out; }
-      .button-block .button img:hover {
-        transform: scale(1.15); }
+  .button-block .img-scale:hover {
+    transform: scale(1.15); }
   .button-block .button__mute-off {
     display: none;
     padding-left: 104px; }
@@ -263,7 +263,7 @@ body * {
     width: auto;
     height: auto;
     margin: auto; }
-#video-wrap .spiner {
+#video-wrap .spinner {
   top: 50%;
   left: 50%;
   height: auto;
