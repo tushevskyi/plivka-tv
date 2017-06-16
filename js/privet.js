@@ -115,7 +115,10 @@ $(function() {
   let chanel_holder      = $('.chanel__holder'),
       current_chanel_img = $('.current-chanel img'),
       img_chanel_holder  = $('.img_chanel__holder'),
-      img_chanel         = $('.img_chanel__holder img');
+      img_chanel         = $('.img_chanel__holder img'),
+      ukho_img           = 'images/icons/UKHO_CHANNEL.svg',
+      sixty_img          = 'images/icons/16_CHANNEL.svg',
+      shuffle_img        = 'images/icons/SHUFFLE.svg';
 
   chanel_holder.on('click', changeChanel);
 
@@ -128,24 +131,24 @@ $(function() {
 
     hideBttnChoosedElement(e,img_chanel_holder);    
 
-    switch(e.target.className) {
+    switch(e.target.id) {
       case ukho:
         chanel_name = 'ukho';
-        current_chanel_img[0].src = e.target.src;
+        current_chanel_img[0].src = ukho_img;
         player.pause();
         sendSock("get_full", chanel_name);
         sendSock('get_messages', chanel_name);
         break;
       case sxtn:
         chanel_name = "onesix";
-        current_chanel_img[0].src = e.target.src;
+        current_chanel_img[0].src = sixty_img;
         player.pause();
         sendSock("get_full",chanel_name);
         sendSock('get_messages',chanel_name);
         break;
       case main:   
         chanel_name = "main";
-        current_chanel_img[0].src = e.target.src;
+        current_chanel_img[0].src = shuffle_img;
         player.pause();
         sendSock("get_full",chanel_name);
         sendSock('get_messages',chanel_name);
@@ -157,16 +160,16 @@ $(function() {
   $(player).one('play', soundFadeOut);
 
   function soundFadeOut() {
-    let _volumeInterval = setInterval(volumeUp, 350),
-        volume          = 0;
+    // let _volumeInterval = setInterval(volumeUp, 350),
+    //     volume          = 0;
       
-    function volumeUp() {
-      volume += 0.05;
-      if(volume > 1) {
-        clearInterval(_volumeInterval);
-      }
-      player.volume = volume.toFixed(2);
-    }
+    // function volumeUp() {
+    //   volume += 0.05;
+    //   if(volume > 1) {
+    //     clearInterval(_volumeInterval);
+    //   }
+    //   player.volume = volume.toFixed(2);
+    // }
 
   }
 
@@ -184,13 +187,12 @@ $(function() {
   function changeQuality(e) {
     console.log(videoObj);
     console.log("player: " + player.currentTime);
-
     // hideBttnChoosedElement(e,img_quality_holder);
 
     let video_currentTime = player.currentTime || videoObj.current.start_time,
         fullUrl           = "";
 
-    switch(e.target.className) {
+    switch(e.target.id) {
       case 'js_sd': 
         quality_string = 480;
         fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.current.url;
