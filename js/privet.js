@@ -12,11 +12,11 @@ $(function() {
         $add_message  = $('.add-message'),
         comment_box   = $('.comment-box');
 
-  let   socket         = new WebSocket(wsHost),
-        nv_src         = '',
-        nv_artist      = '',
-        nv_title       = '',
-        nv_desc        = '',
+  let   socket        = new WebSocket(wsHost),
+        nv_src        = '',
+        nv_artist     = '',
+        nv_title      = '',
+        nv_desc       = '',
         videoObj,
         messageObj;
 
