@@ -1,5 +1,4 @@
 # plivka-tv http://plivka.tv/
-plivka tv is 
 
 Plivka is a research and educational art centre; a performance venue; a community of artists 
 and enthusiasts; based in Kiev. Plivka.tv is an open archive broadcasting quality content, 
