@@ -178,28 +178,5 @@ $(function() {
 		_delay = setInterval(delayCheck, 1000);
 	}
 
-	
-    // $('.svg_hover img[src$=".svg"]').each(function() {
-    //     let $img = $(this),
-    //         imgURL = $img.attr('src'),
-    //     	attributes = $img.prop("attributes");
-
-    //     $.get(imgURL, function(data) {
-    //         // Get the SVG tag, ignore the rest
-    //         var $svg = $(data).find('svg');
-
-    //         // Remove any invalid XML tags
-    //         $svg = $svg.removeAttr('xmlns:a');
-
-    //         // Loop through IMG attributes and apply on SVG
-    //         $.each(attributes, function() {
-    //             $svg.attr(this.name, this.value);
-    //         });
-
-    //         // Replace IMG with SVG
-    //         $img.replaceWith($svg);
-    //     }, 'xml');
-    // });
-
 
 });
