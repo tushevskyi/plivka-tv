@@ -263,14 +263,10 @@ $(function() {
     console.log(videoObj);
     var startTime = videoObj.current.start_time;
     var fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.current.url;
-    // player.src = fullUrl + '#t=' + startTime;
-
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // player.src = null;
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     if (window.location.pathname !== '/shared.html') {
-      player.src = fullUrl + '#t=' + startTime;
+      // player.src = fullUrl + '#t=' + startTime;
+      player.src = null;
     } else {
       setSharedUrl('/shared.html');  
     }
@@ -330,8 +326,11 @@ $(function() {
   }
 
 
-  let main_share_btn = $('.navigation .button_share');
+  let main_share_btn  = $('.navigation .button_share'),
+      about_share_btn = $('.button_share__about');
+
   main_share_btn.on('click', fbShare);
+  about_share_btn.on('click', fbShareAbout);
 
   //videoObj
 
@@ -345,6 +344,18 @@ $(function() {
         picture: 'http://plivka.tv/images/plivka-log-fb.png',
         href: 'http://plivka.tv/shared.html?v=' + videoObj.current.url
     }, function(response){});
+  }
+
+  function fbShareAbout() {
+    FB.ui({
+        display: 'popup',
+        method: 'share',
+        description: "plivka tv",
+        title: 'Plivka is a research and educational art centre; a performance venue; a community of artists and enthusiasts; based in Kiev.',
+        link: '',
+        picture: 'http://plivka.tv/images/plivka-log-fb.png',
+        href: 'http://plivka.tv/'
+    }, function(response){}); 
   }
 
 
