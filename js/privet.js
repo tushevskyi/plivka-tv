@@ -265,7 +265,8 @@ $(function() {
     var fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.current.url;
 
     if (window.location.pathname !== '/shared.html') {
-      player.src = fullUrl + '#t=' + startTime;
+      // player.src = fullUrl + '#t=' + startTime;
+      player.src = null;
     } else {
       setSharedUrl('/shared.html');  
     }
@@ -349,8 +350,8 @@ $(function() {
     FB.ui({
         display: 'popup',
         method: 'share',
-        description: "plivka tv",
-        title: 'Plivka is a research and educational art centre; a performance venue; a community of artists and enthusiasts; based in Kiev.',
+        description: 'Plivka is a research and educational art centre; a performance venue; a community of artists and enthusiasts; based in Kiev.',
+        title: 'PLIVKA TV',
         link: '',
         picture: 'http://plivka.tv/images/plivka-log-fb.png',
         href: 'http://plivka.tv/'
