@@ -42,7 +42,7 @@ $(function() {
     // title.innerHTML =  nv_title;
     nv_src = '';
     request_next();
-  }
+  };
 
 
 
@@ -153,7 +153,7 @@ $(function() {
         sendSock('get_messages',chanel_name);
         break;
       }    
-  };     
+  }     
 
   player.volume = 0;          
   $(player).one('play', soundFadeOut);
@@ -232,7 +232,7 @@ $(function() {
           'margin-bottom': '0'
         });
       }
-    }
+    };
 
     checkIcon(fhd_img_src);
 

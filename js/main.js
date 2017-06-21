@@ -54,7 +54,7 @@ $(function() {
 
 	function muteEvent() {
 		btn_mute_on.css('display','none');
-		btn_mute_off.css('display','block')
+		btn_mute_off.css('display','block');
 		video.prop('muted',1);
 	}
 
@@ -138,11 +138,11 @@ $(function() {
 
 
 	let timedelay 	= 0,
-		// _delay 		= setInterval(delayCheck, 1000),
+		_delay 		= setInterval(delayCheck, 1000),
 	 	add_message = $('.add-message'),
 		fosuc_check = true;
 
-	// $document.on('mousemove touchstart', showAllEvent);
+	$document.on('mousemove touchstart', showAllEvent);
 
 	add_message.on('focus', onFocusEvent);
 	add_message.on('blur', onBlurEvent);
