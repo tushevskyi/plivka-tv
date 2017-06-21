@@ -1,7 +1,6 @@
 $(function() {
 
   'use strict';
-  // var wsHost = "ws://localhost:8085/ws";
 
   const wsHost        = "ws://ws.plivka.tv:8085/ws",
         player        = document.getElementById('videobg'),
@@ -43,7 +42,7 @@ $(function() {
     // title.innerHTML =  nv_title;
     nv_src = '';
     request_next();
-  }
+  };
 
 
 
@@ -154,7 +153,7 @@ $(function() {
         sendSock('get_messages',chanel_name);
         break;
       }    
-  };     
+  }     
 
   player.volume = 0;          
   $(player).one('play', soundFadeOut);
@@ -233,13 +232,12 @@ $(function() {
           'margin-bottom': '0'
         });
       }
-    }
+    };
 
     checkIcon(fhd_img_src);
 
   }
 
-  // hideDefaultBtn(img_quality,current_quality_img);
   hideDefaultBtn(img_chanel,current_chanel_img);    
 
   function hideDefaultBtn(btn_img,current_img) {

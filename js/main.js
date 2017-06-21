@@ -54,7 +54,7 @@ $(function() {
 
 	function muteEvent() {
 		btn_mute_on.css('display','none');
-		btn_mute_off.css('display','block')
+		btn_mute_off.css('display','block');
 		video.prop('muted',1);
 	}
 
