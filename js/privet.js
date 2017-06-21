@@ -1,7 +1,6 @@
 $(function() {
 
   'use strict';
-  // var wsHost = "ws://localhost:8085/ws";
 
   const wsHost        = "ws://ws.plivka.tv:8085/ws",
         player        = document.getElementById('videobg'),
@@ -263,11 +262,7 @@ $(function() {
     console.log(videoObj);
     var startTime = videoObj.current.start_time;
     var fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.current.url;
-    // player.src = fullUrl + '#t=' + startTime;
-
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // player.src = null;
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  
 
     if (window.location.pathname !== '/shared.html') {
       player.src = fullUrl + '#t=' + startTime;
