@@ -180,16 +180,15 @@ $(function() {
 
 
 	
-
-
-		player.oncanplay = () => {
-			let player = document.getElementById('videobg');
-			if (!player.paused) {
-				player.play();
-				video.prop('muted',1);
-				video.prop('muted',0);
-			};
+	let player = document.getElementById('videobg');
+	player.oncanplay = () => {
+		
+		if (!player.paused) {
+			player.play();
+			video.prop('muted',1);
+			video.prop('muted',0);
 		};
+	};
 	
 
 
