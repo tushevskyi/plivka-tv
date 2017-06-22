@@ -179,9 +179,10 @@ $(function() {
 	}
 
 	{
-		if (!video.paused) {
+		let player = document.getElementById('videobg');
+		if (!player.paused) {
 			alert('paused');
-			video.play();
+			player.play();
 		};
 	}
 
