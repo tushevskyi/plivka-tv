@@ -178,16 +178,19 @@ $(function() {
 		_delay = setInterval(delayCheck, 1000);
 	}
 
-	{
-		let player = document.getElementById('videobg');
-		if (!player.paused) {
-			player.play();
-			setTimeout(() => {
+
+	
+
+
+		player.oncanplay = () => {
+			let player = document.getElementById('videobg');
+			if (!player.paused) {
+				player.play();
 				video.prop('muted',1);
 				video.prop('muted',0);
-			},500);
+			};
 		};
-	}
+	
 
 
 });
