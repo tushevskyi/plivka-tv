@@ -178,5 +178,12 @@ $(function() {
 		_delay = setInterval(delayCheck, 1000);
 	}
 
+	{
+		if (!video.paused) {
+			alert('paused');
+			video.play();
+		};
+	}
+
 
 });
