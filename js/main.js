@@ -181,8 +181,11 @@ $(function() {
 	{
 		let player = document.getElementById('videobg');
 		if (!player.paused) {
-			alert('paused');
 			player.play();
+			setTimeount(() => {
+				video.prop('muted',1);
+				video.prop('muted',0);
+			},500);
 		};
 	}
 
