@@ -182,7 +182,7 @@ $(function() {
 		let player = document.getElementById('videobg');
 		if (!player.paused) {
 			player.play();
-			setTimeount(() => {
+			setTimeout(() => {
 				video.prop('muted',1);
 				video.prop('muted',0);
 			},500);
