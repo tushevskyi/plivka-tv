@@ -9,7 +9,7 @@ $(function() {
 			videoWrap 			= document.getElementById('video-wrap'),
 			about 				= $('.about_pop-up'),
 			navigation 			= $('.navigation'),
-			main_logo 			= $('.main-logo'),
+			logo_video_desc 	= $('.logo_video-description'),
 			btn_mute_on 		= $('.button__mute-on'),
 			btn_mute_off 		= $('.button__mute-off'),
 			btn_mute_on_img 	= $('.button__mute-on img'),
@@ -27,7 +27,10 @@ $(function() {
 			$document 			= $(document),
 			show_comments 		= $('.show_comments'),
 			comment_form 		= $('.comment-form'),
-			comment_box 		= $('.comment-box');
+			comment_box 		= $('.comment-box'),
+			artist        		= $('.artist'),
+        	title         		= $('.title'),
+        	desc          		= $('.description');
 
 	btn_about.on('click', aboutEvent);
 	btn_mute_on_img.on('click', muteEvent);
@@ -43,13 +46,13 @@ $(function() {
 	function aboutEvent() {
 		about.css('display','block');
 		navigation.css('display','none');
-		main_logo.css('display','none');
+		logo_video_desc.css('display','none');
 	}
 
 	function closeAboutEvent() {
 		about.css('display','none');
 		navigation.css('display','block');
-		main_logo.css('display','block');
+		logo_video_desc.css('display','block');
 	}
 
 	function muteEvent() {
@@ -180,7 +183,7 @@ $(function() {
 
 
 	
-	let player = document.getElementById('videobg');
+	let player = document.getElementById('videobg'); 
 	player.oncanplay = () => {
 		
 		if (!player.paused) {

@@ -4,9 +4,9 @@ $(function() {
 
   const wsHost        = "ws://ws.plivka.tv:8085/ws",
         player        = document.getElementById('videobg'),
-        artist        = document.getElementById('artist'),
-        title         = document.getElementById('title'),
-        desc          = document.getElementById('description'),
+        artist        = $('.artist'),
+        title         = $('.title'),
+        desc          = $('.description'),
         isActive      = true,
         $add_message  = $('.add-message'),
         comment_box   = $('.comment-box');
@@ -36,15 +36,15 @@ $(function() {
     setupWS();
   }
 
-  player.onended = function(){
+  player.onended = function() {
     player.src = nv_src;
-    // artist.innerHTML = nv_artist;
-    // title.innerHTML =  nv_title;
+    artist.html(nv_artist);
+    title.html(nv_title);
+    // desc.html(nv_desc[0]);
     nv_src = '';
-    request_next();
+    // request_next();
+    sendSock('get_next',chanel_name);
   };
-
-
 
   let chanel_name = "main";
 
@@ -83,9 +83,9 @@ $(function() {
     }
   }
 
-  function request_next() {
-      socket.send('get_next');
-  }
+  // function request_next() {
+  //     socket.send('get_next');
+  // }
 
   function showServerResponse(txt) {
       console.log(txt);
@@ -98,6 +98,7 @@ $(function() {
       videoObj = receivedDataObj;
       setupVideo(videoObj);
     } else if (receivedDataObj.type === 'video_next') {
+      console.log(receivedDataObj);
       setupNext(receivedDataObj);
     } else if (receivedDataObj.type === 'message_list') {
       messageObj = receivedDataObj;
@@ -264,18 +265,19 @@ $(function() {
 
     if (window.location.pathname !== '/shared.html') {
       player.src = fullUrl + '#t=' + startTime;
-      // player.src = null;
     } else {
       setSharedUrl('/shared.html');  
     }
 
-    // Нужно добавить в DOM отображение artist + title + description
-    // artist.innerHTML = receivedDataObj.current.artist;
-    // title.innerHTML = receivedDataObj.current.title;
+    
+    artist.html(videoObj.current.artist);
+    title.html(videoObj.current.title);
+    desc.html(videoObj.current.desc[0]);
+
     nv_src = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.next.url,
     nv_artist = videoObj.next.artist,
     nv_title = videoObj.next.title,
-    nv_desc = videoObj.next.url;
+    nv_desc = videoObj.next.desc;
 
     /*
       console.log('Current video: ' + videoObj.current.url + '#t=' + startTime);
@@ -319,7 +321,7 @@ $(function() {
       nv_src = "http://cdn.plivka.tv/" + quality_string + "/" + receivedDataObj.next.url;
       nv_artist = receivedDataObj.next.artist;
       nv_title = receivedDataObj.next.title;
-      nv_description = receivedDataObj.next.description;
+      nv_desc = receivedDataObj.next.description;
       console.log('Next video: ' + receivedDataObj.next.url);
   }
 

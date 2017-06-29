@@ -212,12 +212,28 @@ body {
   100% {
     opacity: 1;
     left: -50px; } }
+.anim-typewriter {
+  animation: typewriter 4s steps(44) 1s 1 normal both; }
+
+@keyframes typewriter {
+  from {
+    width: 0; }
+  to {
+    width: 100%; } }
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: rgba(255, 255, 255, 0.75); }
+  to {
+    border-right-color: transparent; } }
 @font-face {
   font-family: 'icomoon';
   src: url("fonts/icomoon.eot?ozwrh8");
   src: url("../fonts/icomoon.eot?ozwrh8#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?ozwrh8") format("truetype"), url("../fonts/icomoon.woff?ozwrh8") format("woff"), url("../fonts/icomoon.svg?ozwrh8#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
+@font-face {
+  font-family: Roboto-Bold;
+  src: url(../fonts/Roboto-Bold.ttf); }
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
@@ -255,6 +271,21 @@ body {
   content: "\e905";
   color: #d2422f; }
 
+.logo_video-description {
+  position: absolute;
+  top: 45px;
+  left: 45px;
+  width: 66px;
+  z-index: 2147483647;
+  display: flex; }
+  .logo_video-description .main-logo img {
+    width: 66px;
+    height: 66px; }
+  .logo_video-description .video-description p {
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden; }
+
 body * {
   font-family: 'PT Mono', monospace;
   color: #d2422f;
@@ -272,13 +303,6 @@ body * {
 .showNavigation {
   opacity: 1;
   pointer-events: all; }
-
-.main-logo {
-  position: absolute;
-  top: 45px;
-  left: 45px;
-  width: 66px;
-  z-index: 2147483647; }
 
 .button {
   position: absolute;
@@ -355,6 +379,9 @@ body * {
     font-size: 12px;
     line-height: 27px;
     margin-top: 15px; }
+  .about_pop-up .about_text:last-child {
+    margin-top: 5px;
+    line-height: 5px; }
   .about_pop-up .button_close {
     width: 32px;
     right: 45px;
