@@ -17,7 +17,8 @@ $(function() {
         nv_title      = '',
         nv_desc       = '',
         videoObj,
-        messageObj;
+        messageObj,
+        shared_video_url;
 
 
   $add_message
@@ -180,7 +181,8 @@ $(function() {
       fhd_img_src         = 'images/icons/HD_plus_icon.svg',
       img_quality_holder  = $('.img_quality-holder'),
       img_quality         = $('.img_quality-holder img'),
-      quality_string      = 720;
+      quality_string      = 720,
+      current_src;
 
   quality_holder.on('click', changeQuality);
 
@@ -188,6 +190,8 @@ $(function() {
     console.log(videoObj);
     console.log("player: " + player.currentTime);
     // hideBttnChoosedElement(e,img_quality_holder);
+    current_src = player.currentSrc;
+    console.log(current_src);
 
     let video_currentTime = player.currentTime || videoObj.current.start_time,
         fullUrl           = "";
@@ -358,14 +362,13 @@ $(function() {
     }, function(response){}); 
   }
 
-
   function setSharedUrl(shared_path) {
     let video_pathname = window.location.search,
         // stateObj       = { foo: "bar" },
-        video_name;
 
-    video_name = video_pathname.substring(3);
-    player.src = "http://cdn.plivka.tv/" + 720 + "/" + video_name;  
+    shared_video_url = video_pathname.substring(3);
+    console.log(shared_video_url);
+    player.src = "http://cdn.plivka.tv/" + 720 + "/" + shared_video_url;  
     // history.pushState(stateObj, null, "/");
   }
 
