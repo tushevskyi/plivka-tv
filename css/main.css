@@ -266,9 +266,11 @@ body {
   z-index: 2147483647;
   display: flex;
   align-items: center; }
-  .logo_video-description .main-logo img {
-    width: 66px;
-    height: 66px; }
+  .logo_video-description .main-logo {
+    cursor: pointer; }
+    .logo_video-description .main-logo img {
+      width: 66px;
+      height: 66px; }
   .logo_video-description .video-description {
     height: 40px;
     margin-left: 15px; }

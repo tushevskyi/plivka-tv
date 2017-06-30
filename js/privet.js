@@ -2,14 +2,16 @@ $(function() {
 
   'use strict';
 
-  const wsHost        = "ws://ws.plivka.tv:8085/ws",
-        player        = document.getElementById('videobg'),
-        artist        = $('.artist'),
-        title         = $('.title'),
-        desc          = $('.description'),
-        isActive      = true,
-        $add_message  = $('.add-message'),
-        comment_box   = $('.comment-box');
+  const wsHost            = "ws://ws.plivka.tv:8085/ws",
+        player            = document.getElementById('videobg'),
+        artist            = $('.artist'),
+        title             = $('.title'),
+        desc              = $('.description'),
+        isActive          = true,
+        $add_message      = $('.add-message'),
+        comment_box       = $('.comment-box'),
+        video_description = $('.video-description');
+
 
   let   socket        = new WebSocket(wsHost),
         nv_src        = '',
@@ -318,8 +320,14 @@ $(function() {
         `;
     
     (function type() {
+        video_description.fadeIn(1000);
         text = str.slice(0, ++i);
-        if (text === str) return;
+        if (text === str) {
+          setTimeout(() => {
+            video_description.fadeOut(1000);
+          },7000);
+          return;
+        }
         
         document.getElementsByClassName('video-description')[0].innerHTML = text;
 
@@ -328,7 +336,7 @@ $(function() {
         if( char === '>' ) isTag = false;
 
         if (isTag) return type();
-        setTimeout(type, 50);
+        setTimeout(type, 30);
     }());
   }
 

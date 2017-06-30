@@ -30,7 +30,9 @@ $(function() {
 			comment_box 		= $('.comment-box'),
 			artist        		= $('.artist'),
         	title         		= $('.title'),
-        	desc          		= $('.description');
+        	video_description	= $('.video-description'),
+        	main_logo 			= $('.main-logo');
+
 
 	btn_about.on('click', aboutEvent);
 	btn_mute_on_img.on('click', muteEvent);
@@ -42,17 +44,18 @@ $(function() {
 	current_chanel.on('click', openChangeChanel);
 	$document.on('click', documentClickEvent);
 	show_comments.on('click', showComments);
+	// main_logo.on('click',showVideoDescription);
 
 	function aboutEvent() {
 		about.css('display','block');
-		navigation.css('display','none');
-		logo_video_desc.css('display','none');
+		navigation.css('opacity','none');
+		logo_video_desc.css({'opacity':'0','visibility':'hidden'});
 	}
 
 	function closeAboutEvent() {
 		about.css('display','none');
 		navigation.css('display','block');
-		logo_video_desc.css('display','block');
+		logo_video_desc.css({'opacity':'1','visibility':'visible'});
 	}
 
 	function muteEvent() {
@@ -139,6 +142,13 @@ $(function() {
 		});
 	}
 
+	// function showVideoDescription() {
+	// 	video_description.fadeIn(1000).addClass('fadeIn');
+	// 	if(video_description.hasClass('fadeIn')) {
+	// 		video_description.fadeOut(1000);
+	// 	}
+	// }
+
 
 	let timedelay 	= 0,
 		_delay 		= setInterval(delayCheck, 1000),
@@ -181,8 +191,6 @@ $(function() {
 		_delay = setInterval(delayCheck, 1000);
 	}
 
-
-	
 	let player = document.getElementById('videobg'); 
 	player.oncanplay = () => {
 		
@@ -193,6 +201,4 @@ $(function() {
 		};
 	};
 	
-
-
 });
