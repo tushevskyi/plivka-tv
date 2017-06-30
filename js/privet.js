@@ -362,7 +362,7 @@ $(function() {
 
   function setSharedUrl(shared_path) {
     let video_pathname = window.location.search,
-        stateObj       = { foo: "bar" },
+        stateObj       = { foo: "bar" };
 
     shared_video_url = video_pathname.substring(3);
     player.src = "http://cdn.plivka.tv/" + 720 + "/" + shared_video_url;  
