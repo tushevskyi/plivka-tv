@@ -39,11 +39,8 @@ $(function() {
 
   player.onended = function() {
     player.src = nv_src;
-    artist.html(nv_artist);
-    title.html(nv_title);
-    // desc.html(nv_desc[0]);
+    typewriterVideoDesc(nv_artist,nv_title,nv_desc);
     nv_src = '';
-    // request_next();
     sendSock('get_next',chanel_name);
   };
 
@@ -84,10 +81,6 @@ $(function() {
     }
   }
 
-  // function request_next() {
-  //     socket.send('get_next');
-  // }
-
   function showServerResponse(txt) {
       console.log(txt);
   }
@@ -98,6 +91,7 @@ $(function() {
     if (receivedDataObj.type === 'video_full') {
       videoObj = receivedDataObj;
       setupVideo(videoObj);
+      typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,videoObj.current.desc);
     } else if (receivedDataObj.type === 'video_next') {
       console.log(receivedDataObj);
       setupNext(receivedDataObj);
@@ -271,20 +265,10 @@ $(function() {
       setSharedUrl('/shared.html');  
     }
 
-    
-    artist.html(videoObj.current.artist);
-    title.html(videoObj.current.title);
-    desc.html(videoObj.current.desc[0]);
-
     nv_src = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.next.url,
     nv_artist = videoObj.next.artist,
     nv_title = videoObj.next.title,
     nv_desc = videoObj.next.desc;
-
-    /*
-      console.log('Current video: ' + videoObj.current.url + '#t=' + startTime);
-      console.log('Next video: ' + videoObj.next.url);
-    */ 
 
 
     // let video = videoObj.next.url;
@@ -319,6 +303,35 @@ $(function() {
 
   }
 
+  function typewriterVideoDesc(artist,title,desc) {
+    let isTag,
+        text,
+        i   = 0,
+        str = `
+          <div class='description_block'>
+            <p class="artist">${artist}</p>
+            <p class="title">${title}</p>
+          </div>
+          <div class='description_block'>
+              <p class="description">description</p>
+          </div>
+        `;
+    
+    (function type() {
+        text = str.slice(0, ++i);
+        if (text === str) return;
+        
+        document.getElementsByClassName('video-description')[0].innerHTML = text;
+
+        let char = text.slice(-1);
+        if( char === '<' ) isTag = true;
+        if( char === '>' ) isTag = false;
+
+        if (isTag) return type();
+        setTimeout(type, 50);
+    }());
+  }
+
   function setupNext(receivedDataObj) {
       nv_src = "http://cdn.plivka.tv/" + quality_string + "/" + receivedDataObj.next.url;
       nv_artist = receivedDataObj.next.artist;
@@ -333,8 +346,6 @@ $(function() {
 
   main_share_btn.on('click', fbShare);
   about_share_btn.on('click', fbShareAbout);
-
-  //videoObj
 
   function fbShare() {
     FB.ui({
@@ -375,7 +386,7 @@ $(function() {
         n = "";    
 
     for (var i = 0; i < messages.length; i++) {
-      let l = "<div class='comment'><div class='comment-text'><p> " + messages[i] + "</p></div></div>";
+      let l = `<div class='comment'><div class='comment-text'><p> ${messages[i]} </p></div></div>`;
       n += l;
     }
 
