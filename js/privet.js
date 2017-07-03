@@ -23,7 +23,6 @@ $(function() {
         messageObj,
         shared_video_url;
 
-
   $add_message
     .on('keyup', keyupEvent)
     .on('enterKey', sendMessage);
@@ -158,16 +157,16 @@ $(function() {
   $(player).one('play', soundFadeOut);
 
   function soundFadeOut() {
-    // let _volumeInterval = setInterval(volumeUp, 350),
-    //     volume          = 0;
+    let _volumeInterval = setInterval(volumeUp, 350),
+        volume          = 0;
       
-    // function volumeUp() {
-    //   volume += 0.05;
-    //   if(volume > 1) {
-    //     clearInterval(_volumeInterval);
-    //   }
-    //   player.volume = volume.toFixed(2);
-    // }
+    function volumeUp() {
+      volume += 0.05;
+      if(volume > 1) {
+        clearInterval(_volumeInterval);
+      }
+      player.volume = volume.toFixed(2);
+    }
 
   }
 

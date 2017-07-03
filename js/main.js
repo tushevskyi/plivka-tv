@@ -31,8 +31,14 @@ $(function() {
 			artist        		= $('.artist'),
         	title         		= $('.title'),
         	video_description	= $('.video-description'),
-        	main_logo 			= $('.main-logo');
+        	main_logo 			= $('.main-logo'),
+        	about_text 			= $('.about_text');
 
+    
+    for(let i=0;i<about_text.length;i++) {
+    	about_text[i].innerHTML = about_text[i].innerHTML.toUpperCase();
+    }
+    
 
 	btn_about.on('click', aboutEvent);
 	btn_mute_on_img.on('click', muteEvent);
@@ -153,9 +159,6 @@ $(function() {
 				break;
 		};
 	}
-
-	console.log(video_description.hasClass('fadeIn'));
-
 
 	let timedelay 	= 0,
 		_delay 		= setInterval(delayCheck, 1000),
