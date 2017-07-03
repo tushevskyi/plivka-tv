@@ -190,15 +190,5 @@ $(function() {
 		clearInterval(_delay);
 		_delay = setInterval(delayCheck, 1000);
 	}
-
-	let player = document.getElementById('videobg'); 
-	player.oncanplay = () => {
-		
-		if (!player.paused) {
-			player.play();
-			video.prop('muted',1);
-			video.prop('muted',0);
-		};
-	};
 	
 });
