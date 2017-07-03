@@ -44,7 +44,7 @@ $(function() {
 	current_chanel.on('click', openChangeChanel);
 	$document.on('click', documentClickEvent);
 	show_comments.on('click', showComments);
-	// main_logo.on('click',showVideoDescription);
+	main_logo.on('click',showVideoDescription);
 
 	function aboutEvent() {
 		about.css('display','block');
@@ -142,12 +142,19 @@ $(function() {
 		});
 	}
 
-	// function showVideoDescription() {
-	// 	video_description.fadeIn(1000).addClass('fadeIn');
-	// 	if(video_description.hasClass('fadeIn')) {
-	// 		video_description.fadeOut(1000);
-	// 	}
-	// }
+	function showVideoDescription() {
+
+		switch(video_description.hasClass('fadeIn')) {
+			case false:
+				video_description.fadeIn(300).addClass('fadeIn');
+				break;
+			case true:
+				video_description.fadeOut(300).removeClass('fadeIn');
+				break;
+		};
+	}
+
+	console.log(video_description.hasClass('fadeIn'));
 
 
 	let timedelay 	= 0,

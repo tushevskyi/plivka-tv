@@ -10,7 +10,8 @@ $(function() {
         isActive          = true,
         $add_message      = $('.add-message'),
         comment_box       = $('.comment-box'),
-        video_description = $('.video-description');
+        video_description = $('.video-description'),
+        main_logo         = $('.main-logo');
 
 
   let   socket        = new WebSocket(wsHost),
@@ -157,16 +158,16 @@ $(function() {
   $(player).one('play', soundFadeOut);
 
   function soundFadeOut() {
-    let _volumeInterval = setInterval(volumeUp, 350),
-        volume          = 0;
+    // let _volumeInterval = setInterval(volumeUp, 350),
+    //     volume          = 0;
       
-    function volumeUp() {
-      volume += 0.05;
-      if(volume > 1) {
-        clearInterval(_volumeInterval);
-      }
-      player.volume = volume.toFixed(2);
-    }
+    // function volumeUp() {
+    //   volume += 0.05;
+    //   if(volume > 1) {
+    //     clearInterval(_volumeInterval);
+    //   }
+    //   player.volume = volume.toFixed(2);
+    // }
 
   }
 
@@ -322,10 +323,12 @@ $(function() {
     
     (function type() {
         video_description.fadeIn(1000);
+        main_logo.css('pointer-events','none');
         text = str.slice(0, ++i);
         if (text === str) {
           setTimeout(() => {
             video_description.fadeOut(1000);
+            main_logo.css('pointer-events','auto')
           },7000);
           return;
         }
