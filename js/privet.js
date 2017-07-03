@@ -93,7 +93,6 @@ $(function() {
     if (receivedDataObj.type === 'video_full') {
       videoObj = receivedDataObj;
       setupVideo(videoObj);
-      typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,videoObj.current.desc);
     } else if (receivedDataObj.type === 'video_next') {
       console.log(receivedDataObj);
       setupNext(receivedDataObj);
@@ -271,6 +270,8 @@ $(function() {
     nv_artist = videoObj.next.artist,
     nv_title = videoObj.next.title,
     nv_desc = videoObj.next.desc;
+
+    typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,videoObj.current.desc);
 
 
     // let video = videoObj.next.url;
