@@ -157,16 +157,16 @@ $(function() {
   $(player).one('play', soundFadeOut);
 
   function soundFadeOut() {
-    // let _volumeInterval = setInterval(volumeUp, 350),
-    //     volume          = 0;
+    let _volumeInterval = setInterval(volumeUp, 350),
+        volume          = 0;
       
-    // function volumeUp() {
-    //   volume += 0.05;
-    //   if(volume > 1) {
-    //     clearInterval(_volumeInterval);
-    //   }
-    //   player.volume = volume.toFixed(2);
-    // }
+    function volumeUp() {
+      volume += 0.05;
+      if(volume > 1) {
+        clearInterval(_volumeInterval);
+      }
+      player.volume = volume.toFixed(2);
+    }
   }
 
   let quality_holder      = $('.quality__holder'),
@@ -337,7 +337,7 @@ $(function() {
         if( char === '>' ) isTag = false;
 
         if (isTag) return type();
-        setTimeout(type, 30);
+        setTimeout(type, 20);
     }());
   }
 
