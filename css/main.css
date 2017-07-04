@@ -479,13 +479,8 @@ body * {
     font-size: 18px;
     line-height: 20px; }
   .about_pop-up .button_close {
-    top: 45px;
-    right: 45px; } }
-  @media screen and (max-width: 765px) and (max-width: 768px) {
-    .about_pop-up .button_close {
-      top: 20px;
-      right: 25px; } }
-@media screen and (max-width: 765px) {
+    top: 20px;
+    right: 25px; }
   .about_pop-up .row {
     position: initial; }
 
