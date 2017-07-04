@@ -408,10 +408,12 @@ body * {
     /* NEW - Chrome */
     display: flex; }
   .about_pop-up .about_text {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;
     font-size: 36px;
     line-height: 50px;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    cursor: default; }
     @media screen and (max-width: 768px) {
       .about_pop-up .about_text {
         font-size: 20px;
