@@ -94,11 +94,9 @@ $(function() {
       videoObj = receivedDataObj;
       setupVideo(videoObj);
     } else if (receivedDataObj.type === 'video_next') {
-      console.log(receivedDataObj);
       setupNext(receivedDataObj);
     } else if (receivedDataObj.type === 'message_list') {
       messageObj = receivedDataObj;
-      console.log(messageObj);
       updateMessages(messageObj);
     } else {
       console.log('Error parsing server response :(');
@@ -181,8 +179,6 @@ $(function() {
   quality_holder.on('click', changeQuality);
 
   function changeQuality(e) {
-    console.log(videoObj);
-    console.log("player: " + player.currentTime);
 
     let video_currentTime = player.currentTime || videoObj.current.start_time,
         fullUrl           = "";
@@ -254,7 +250,6 @@ $(function() {
   }          
 
   function setupVideo(videoObj) {
-    console.log(videoObj);
     var startTime = videoObj.current.start_time;
     var fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.current.url;
 
@@ -270,38 +265,6 @@ $(function() {
     nv_desc = videoObj.next.desc;
 
     typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,videoObj.current.desc);
-
-
-    // let video = videoObj.next.url;
-    // let next_vid_url = `http://cdn.plivka.tv/1080/${video}#t=0`;
-
-    // let req = new XMLHttpRequest();
-    // req.open('GET', "http://cdn.plivka.tv/480/6FQTX5ZYNL.mp4", true);
-    // req.responseType = 'blob';
-
-    // req.onload = function() {
-    //    // Onload is triggered even on 404
-    //    // so we need to check the status code
-    //    if (this.status === 200) {
-    //       var videoBlob = this.response;
-    //       var vid = URL.createObjectURL(videoBlob); // IE10+
-    //       // Video is now downloaded
-    //       // and we can set it as source on the video element
-    //       player.src = vid;
-    //    }
-    //    console.log(req.statusText);
-    // }
-
-    // req.onprogress = function () {
-    //   console.log('LOADING', req.status);
-    // };
-
-    // req.onerror = function() {
-    //    // Error
-    // }
-
-    // req.send();
-
   }
 
   function typewriterVideoDesc(artist,title,desc) {
@@ -346,7 +309,6 @@ $(function() {
       nv_artist = receivedDataObj.next.artist;
       nv_title = receivedDataObj.next.title;
       nv_desc = receivedDataObj.next.description;
-      console.log('Next video: ' + receivedDataObj.next.url);
   }
 
 

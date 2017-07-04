@@ -276,18 +276,17 @@ body {
       align-items: flex-start;
       top: 20px;
       left: 20px; } }
-  .logo_video-description .main-logo {
-    cursor: pointer; }
-    .logo_video-description .main-logo img {
-      width: 66px;
-      height: 66px; }
-      @media screen and (max-width: 768px) {
-        .logo_video-description .main-logo img {
-          width: 45px;
-          height: 45px; } }
+  .logo_video-description .main-logo img {
+    width: 66px;
+    height: 66px; }
+    @media screen and (max-width: 768px) {
+      .logo_video-description .main-logo img {
+        width: 45px;
+        height: 45px; } }
   .logo_video-description .video-description {
-    height: 40px;
-    margin-left: 15px; }
+    height: 33px;
+    margin-left: 15px;
+    font-size: 12px; }
     @media screen and (max-width: 768px) {
       .logo_video-description .video-description {
         margin: 15px 0 0 0; } }
@@ -440,10 +439,12 @@ body * {
     .about_pop-up .button_close:hover {
       transform: scale(1.15); }
   .about_pop-up .about_share-donate {
-    margin-top: 60px; }
+    margin-top: 80px; }
+    .about_pop-up .about_share-donate p {
+      font-size: 12px; }
     @media screen and (max-width: 768px) {
       .about_pop-up .about_share-donate {
-        margin: 10px 0 0 0; } }
+        margin: 20px 0 0 0; } }
   .about_pop-up .button_about-block {
     display: inline-block;
     text-transform: uppercase;

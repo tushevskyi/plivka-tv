@@ -33,7 +33,7 @@ $(function() {
         	video_description	= $('.video-description'),
         	main_logo 			= $('.main-logo');
     
-    
+
 	btn_about.on('click', aboutEvent);
 	btn_mute_on_img.on('click', muteEvent);
 	btn_mute_off_img.on('click', muteOffEvent);
@@ -44,7 +44,8 @@ $(function() {
 	current_chanel.on('click', openChangeChanel);
 	$document.on('click', documentClickEvent);
 	show_comments.on('click', showComments);
-	main_logo.on('click',showVideoDescription);
+	
+	main_logo.hover(showVideoDescription);
 
 	function aboutEvent() {
 		about.css('display','block');
