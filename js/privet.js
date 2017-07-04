@@ -261,7 +261,8 @@ $(function() {
     var fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.current.url;
 
     if (window.location.pathname !== '/shared.html') {
-      player.src = fullUrl + '#t=' + startTime;
+      // player.src = fullUrl + '#t=' + startTime;
+      player.src = null;
     } else {
       setSharedUrl('/shared.html');  
     }

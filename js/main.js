@@ -31,15 +31,9 @@ $(function() {
 			artist        		= $('.artist'),
         	title         		= $('.title'),
         	video_description	= $('.video-description'),
-        	main_logo 			= $('.main-logo'),
-        	about_text 			= $('.about_text');
-
+        	main_logo 			= $('.main-logo');
     
-    for(let i=0;i<about_text.length;i++) {
-    	about_text[i].innerHTML = about_text[i].innerHTML.toUpperCase();
-    }
     
-
 	btn_about.on('click', aboutEvent);
 	btn_mute_on_img.on('click', muteEvent);
 	btn_mute_off_img.on('click', muteOffEvent);
