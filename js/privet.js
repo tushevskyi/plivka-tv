@@ -264,9 +264,9 @@ $(function() {
     nv_title = videoObj.next.title,
     nv_desc = videoObj.next.desc;
 
-    player.oncanplay = () => {
-      typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,videoObj.current.desc);
-    };
+
+    typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,videoObj.current.desc);
+    
   }
 
   function typewriterVideoDesc(artist,title,desc) {
