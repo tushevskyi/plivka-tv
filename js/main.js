@@ -44,8 +44,26 @@ $(function() {
 	current_chanel.on('click', openChangeChanel);
 	$document.on('click', documentClickEvent);
 	show_comments.on('click', showComments);
-	
+
 	main_logo.hover(showVideoDescription);
+
+	$(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', fullScreenEvent);
+
+	function fullScreenEvent() {
+		
+		switch(logo_video_desc.hasClass('fullscreen')) {
+			case false:
+				logo_video_desc
+					.addClass('fullscreen')
+					.css('top','90px');
+				break;		
+			case true:
+				logo_video_desc
+					.removeClass('fullscreen')
+					.css('top','45px');
+				break;
+		};
+	}
 
 	function aboutEvent() {
 		about.css('display','block');
