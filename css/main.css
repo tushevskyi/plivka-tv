@@ -269,8 +269,7 @@ body {
   width: 66px;
   z-index: 2147483647;
   display: flex;
-  align-items: center;
-  transition: top 2s ease; }
+  align-items: center; }
   @media screen and (max-width: 768px) {
     .logo_video-description {
       flex-direction: column;
@@ -285,22 +284,25 @@ body {
         width: 45px;
         height: 45px; } }
   .logo_video-description .video-description {
-    height: 33px;
+    min-height: 45px;
     margin-left: 15px;
     font-size: 12px; }
     @media screen and (max-width: 768px) {
       .logo_video-description .video-description {
         margin: 15px 0 0 0; } }
-    @media screen and (max-width: 768px) {
-      .logo_video-description .video-description .description_block {
-        font-size: 12px; } }
-    .logo_video-description .video-description .description_block:first-child {
-      display: flex; }
+    .logo_video-description .video-description .description_block {
+      width: 300px; }
+      .logo_video-description .video-description .description_block .description {
+        position: absolute;
+        width: 500px; }
+      @media screen and (max-width: 768px) {
+        .logo_video-description .video-description .description_block {
+          font-size: 12px; } }
       @media screen and (max-width: 768px) {
         .logo_video-description .video-description .description_block:first-child {
           display: block; } }
       .logo_video-description .video-description .description_block:first-child .title {
-        padding-left: 10px; }
+        padding-left: 4px; }
         @media screen and (max-width: 768px) {
           .logo_video-description .video-description .description_block:first-child .title {
             padding: 0; } }
@@ -313,8 +315,7 @@ body {
               padding-right: 0px; } }
     .logo_video-description .video-description p {
       margin: 0 auto;
-      white-space: nowrap;
-      overflow: hidden; }
+      display: inline-block; }
 
 body * {
   font-family: 'PT Mono', monospace;
