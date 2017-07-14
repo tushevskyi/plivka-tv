@@ -50,7 +50,7 @@ $(function() {
 	$(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', fullScreenEvent);
 
 	function fullScreenEvent() {
-		
+
 		switch(logo_video_desc.hasClass('fullscreen')) {
 			case false:
 				logo_video_desc

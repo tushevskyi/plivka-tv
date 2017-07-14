@@ -369,6 +369,7 @@ body * {
     height: auto;
     margin: auto; }
 #video-wrap .spinner {
+  border-radius: 50%;
   top: 50%;
   left: 50%;
   height: auto;
