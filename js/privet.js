@@ -279,7 +279,7 @@ $(function() {
             <p class="title">${title}</p>
           </div>
           <div class='description_block'>
-              <p class="description">${desc}</p>
+              <p class="description">description</p>
           </div>
         `;
     
