@@ -39,14 +39,14 @@ $(function() {
     setupWS();
   }
 
+  let chanel_name = "main";
+
   player.onended = function() {
     player.src = nv_src;
-    typewriterVideoDesc(nv_artist,nv_title,nv_desc);
+    // typewriterVideoDesc(nv_artist,nv_title,nv_desc);
     nv_src = '';
-    sendSock('get_next',chanel_name);
+    sendSock('get_next', chanel_name);
   };
-
-  let chanel_name = "main";
 
   function sendSock(command,chanel_name) {
     let payload = {};
@@ -92,9 +92,11 @@ $(function() {
 
     if (receivedDataObj.type === 'video_full') {
       videoObj = receivedDataObj;
+      console.log(videoObj);
       setupVideo(videoObj);
     } else if (receivedDataObj.type === 'video_next') {
       setupNext(receivedDataObj);
+      console.log(receivedDataObj);
     } else if (receivedDataObj.type === 'message_list') {
       messageObj = receivedDataObj;
       updateMessages(messageObj);
@@ -279,7 +281,7 @@ $(function() {
             <p class="title">${title}</p>
           </div>
           <div class='description_block'>
-              <p class="description">description</p>
+              <p class="description">${desc}</p>
           </div>
         `;
     
