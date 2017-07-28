@@ -267,7 +267,7 @@ $(function() {
     nv_desc = videoObj.next.desc;
 
 
-    typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,videoObj.current.desc);
+    // typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,videoObj.current.desc);
     
   }
 
