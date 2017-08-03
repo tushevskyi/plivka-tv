@@ -291,10 +291,10 @@ body {
       .logo_video-description .video-description {
         margin: 15px 0 0 0; } }
     .logo_video-description .video-description .description_block {
-      width: 300px; }
+      width: 500px; }
       .logo_video-description .video-description .description_block .description {
         position: absolute;
-        width: 500px; }
+        width: 700px; }
       @media screen and (max-width: 768px) {
         .logo_video-description .video-description .description_block {
           font-size: 12px; } }

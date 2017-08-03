@@ -1,0 +1,147 @@
+.button-block {
+  position: absolute;
+  right: 45px;
+  bottom: 35px;
+  width: 130px;
+  text-align: right;
+
+  @include mobile {
+    bottom: 10px;
+    right: 20px;
+  }
+
+  .button {
+    position: relative;
+    display: block;
+    padding: 10px 0;
+
+    img {
+      width: 23px;
+      height: 23px;
+      transition: transform .4s ease-in-out;
+    }
+  }
+
+  .img-scale {
+
+    &:hover {
+      transform: scale(1.15);
+    }
+  }
+
+  .button__mute-off {
+    display: none;
+    padding-left: 104px;
+
+    img {
+      width: 45px;
+    }
+  }
+
+  .button__quality {
+    font-size: 17px;
+
+    .current-quality {
+      display: inline-block;
+      transition: all .4s ease-in-out;
+      cursor: pointer;
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+
+    }
+
+    .quality__holder {
+      display: none;
+      position: absolute;
+      top: 12px;
+      left: -50px;
+      cursor: pointer;
+
+      .img_quality-holder {
+        margin: 0 3px;
+
+        img {
+          display: none;
+        }
+
+        span {
+          font-size: 23px;
+
+          &:hover:before {
+            color: #fff;
+          }
+        }
+      }
+
+      * {
+        display: inline-block;
+      }
+    }
+  }
+
+  .button__choose-chanel {
+    font-size: 17px;
+
+    .current-chanel {
+      display: inline-block;
+      transition: all .4s ease-in-out;
+      cursor: pointer;
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+
+    }
+
+    .chanel__holder {
+      display: none;
+      position: absolute;
+      top: 11px;
+      left: -50px;
+      cursor: pointer;
+      width: 128px;
+
+      .img_chanel__holder {
+        margin: 0 3px;
+
+        img {
+          display: none;
+        }
+
+        span {
+          font-size: 25px;
+
+          &:hover:before {
+            color: #fff;
+          }
+        }
+      }
+
+      * {
+        display: inline-block;
+      }
+    }
+  }
+
+  .button__open-share-donate {
+    position: relative;
+
+    .share-donate__holder {
+      display: none;
+      position: absolute;
+      top: 3.5px;
+      left: -50px;
+      width: 140px;
+
+      .button {
+        display: inline-block;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+    }
+  }
+}

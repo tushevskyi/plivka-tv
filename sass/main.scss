@@ -1,0 +1,261 @@
+@import "var";
+@import "reset";
+@import "mixin";
+@import "comments-block";
+@import "button-block";
+@import "animation";
+@import "fonts";
+@import "mainlogo-description";
+
+body {
+
+  * {
+    font-family: 'PT Mono', monospace;
+    color: rgb(210, 66, 47);
+    outline-style: none;
+  }
+}
+
+.navigation {
+  min-width: 100vw;
+  min-height: 100%;
+  display: block;
+  height: 100vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.showNavigation {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.button {
+  position: absolute;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  font-size: 12px;
+
+  img {
+    cursor: pointer;
+  }
+
+  &:hover {
+    color: #fff;
+  }
+  
+  &.button__about {
+    right: 45px;
+    top: 45px;
+    cursor: pointer;
+
+    @include mobile {
+      top: 20px;
+      right: 20px;
+    }
+
+  }
+}
+
+#video-wrap {
+
+  video#videobg {
+    top: 50%;
+    left: 50%;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    transition: 1s opacity;
+    z-index: -100;
+    position: absolute;
+    width: 100%;
+
+    &:-webkit-full-screen {
+      transform: translate(0);
+    }
+
+    &:-ms-fullscreen {
+      width: auto;
+      height: auto;
+      margin: auto;
+    }
+  }
+
+  .spinner {
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    transition: 1s opacity;
+    z-index: -101;
+    position: absolute;
+    width: 130px;
+
+    @include mobile {
+      width: 60px;
+    }
+  }
+}
+
+.about_pop-up {
+
+  .container {
+    height: 100vh;
+    flex-direction: column;
+    -webkit-box-orient: column;
+    -webkit-box-direction: column;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    justify-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;
+    /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Chrome */
+    display: flex;
+  }
+  display: none;
+  background: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
+
+  .about_text {
+    font-family: 'Source Sans Pro', sans-serif; 
+    font-weight: 700; 
+    font-size: 36px;
+    line-height: 50px;
+    text-transform: uppercase;
+    cursor: default;
+
+    @include tablet {
+      font-size: 30px;
+      line-height: 40px;
+    }
+
+    @include mobile {
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    
+  }
+
+  .about_text:last-child {
+    margin-top: 55px;
+
+    @include mobile {
+      margin-top: 20px;
+    }
+  }
+
+  span.br {
+    display: block;
+
+    @include mobile-s {
+      &:first-child {
+        display: none;
+      }
+    }
+  }
+
+  .button_close {
+    width: 32px;
+    right: 45px;
+    top: 45px;
+    transition: all .4s ease-in-out;
+    &:hover {
+      transform: scale(1.15);
+    }
+  }
+
+  .about_share-donate {
+    margin-top: 80px;
+
+    p {
+      font-size: 12px;
+    }
+
+    @include mobile {
+      margin: 20px 0 0 0;
+    }
+  }
+
+  .button_about-block {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 12px;
+    cursor: pointer;
+    letter-spacing: 1.4px;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+/*.about_pop-up .row {
+	position: relative;
+}*/
+
+.about-info-block {
+  -webkit-animation-duration: 0.5s;
+  -moz-animation-duration: 0.5s;
+  -ms-animation-duration: 0.5s;
+  -o-animation-duration: 0.5s;
+  -webkit-animation-delay: 0.5s;
+  -moz-animation-delay: 0.5s;
+  -ms-animation-delay: 0.5s;
+  -o-animation-delay: 0.5s;
+}
+
+.fall {
+  cursor: default;
+  font-size: 10px;
+  z-index: 999999999999;
+  color: #f00;
+}
+
+@media screen and (max-width: 765px) {
+  .comment-text {
+    font-size: 12px;
+  }
+  .comment-box {
+    width: 250px;
+    margin-bottom: 5px;
+    height: 200px;
+  }
+  .about_pop-up {
+    .about_title {
+      font-size: 18px;
+      line-height: 20px;
+    }
+    .button_close {
+      top: 20px;
+      right: 25px;
+      
+    }
+    .row {
+      position: initial;
+    }
+  }
+  .comment-form, .show_comments {
+    display: none;
+  }
+
+  .about_pop-up {
+  
+    .button_close {
+      width: 25px;
+    }
+  }
+}

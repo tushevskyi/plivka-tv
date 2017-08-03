@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?ozwrh8');
+  src:  url('../fonts/icomoon.eot?ozwrh8#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?ozwrh8') format('truetype'),
+    url('../fonts/icomoon.woff?ozwrh8') format('woff'),
+    url('../fonts/icomoon.svg?ozwrh8#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto-Bold; 
+  src: url(../fonts/Roboto-Bold.ttf); 
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-CHANNEL:before {
+  content: "\e900";
+  color: #d2422f;
+}
+.icon-HD_icon:before {
+  content: "\e901";
+  color: #d2422f;
+}
+.icon-HD_plus_icon:before {
+  content: "\e902";
+  color: #d2422f;
+}
+.icon-SD_icon:before {
+  content: "\e903";
+  color: #d2422f;
+}
+.icon-SHUFFLE:before {
+  content: "\e904";
+  color: #d2422f;
+}
+.icon-UKHO_CHANNEL:before {
+  content: "\e905";
+  color: #d2422f;
+}
