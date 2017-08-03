@@ -43,7 +43,7 @@ $(function() {
 
   player.onended = function() {
     player.src = nv_src;
-    // typewriterVideoDesc(nv_artist,nv_title,nv_desc);
+    typewriterVideoDesc(nv_artist,nv_title,nv_desc);
     nv_src = '';
     sendSock('get_next', chanel_name);
   };
@@ -267,7 +267,7 @@ $(function() {
     nv_desc = videoObj.next.desc;
 
 
-    // typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,videoObj.current.desc);
+    typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,videoObj.current.desc);
     
   }
 
