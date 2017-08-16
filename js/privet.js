@@ -266,8 +266,16 @@ $(function() {
     nv_title = videoObj.next.title,
     nv_desc = videoObj.next.desc;
 
+    function checkDescription() {
+      if(videoObj.current.desc === null) {
+        return '';
+      } else {
+        return videoObj.current.desc;
+      }
+    }
 
-    typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,videoObj.current.desc);
+
+    typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,checkDescription());
     
   }
 
