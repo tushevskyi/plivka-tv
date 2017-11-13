@@ -153,7 +153,7 @@ $(function() {
       }    
   }     
 
-  player.volume = 0;          
+  // player.volume = 0;          
   $(player).one('play', soundFadeOut);
 
   function soundFadeOut() {
@@ -176,7 +176,15 @@ $(function() {
       fhd_img_src         = 'images/icons/HD_plus_icon.svg',
       img_quality_holder  = $('.img_quality-holder'),
       img_quality         = $('.img_quality-holder img'),
-      quality_string      = 720;
+      quality_string      = '',
+      w                   = window.innerWidth;
+  
+
+  if(w > 765) {
+    quality_string = 720;
+  } else {
+    quality_string = 480;
+  }   
 
   quality_holder.on('click', changeQuality);
 

@@ -41,6 +41,10 @@
   .button__quality {
     font-size: 17px;
 
+    @include mobile {
+      display: none;
+    }
+
     .current-quality {
       display: inline-block;
       transition: all .4s ease-in-out;
