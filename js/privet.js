@@ -190,7 +190,7 @@ $(function() {
     player.muted = true;
     document.ontouchmove = (event) => { event.preventDefault(); }
     enableInlineVideo(video);
-    player.onplay = () => { mobile_sound_btn.css('display','block'); }
+    mobile_sound_btn.css('display','block');
   } 
   
 
@@ -292,10 +292,6 @@ $(function() {
 
     player.onplay = () => {
       typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,checkDescription());  
-
-      if ( width <= 756) {
-        mobile_sound_btn.css('display','block');
-      }
     }
     
   }
