@@ -120,13 +120,13 @@
                             <div class='button button_share'>
                                 share
                             </div>
-                            <div class='button button_donate'>
+                            <!-- <div class='button button_donate'>
                                 donate
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
-                <div class="show_comments">comments</div>
+                <div class="show_comments">9l_Jlo][</div>
                 <div class='comment-form'>
                     <div class='comment-box'>
                     </div>
@@ -142,7 +142,7 @@
                                     Plivka is a research <span class='br'></span> and educational art centre; <span class='br'></span> a performance venue; <span class='br'></span> a community of artists and enthusiasts; <span class='br'></span> based in Kiev.
                                 </p>
                                 <p class='about_text'>    
-                                    Plivka.tv is an open archive <span class='br'></span> broadcasting progressive content, <span class='br'></span> performed by local and foreign artists, <span class='br'></span> produced and recorded by us. 
+                                    Plivka.tv is an open archive <span class='br'></span> broadcasting progressive content, <span class='br'></span> performed by local and foreign artists, <span class='br'></span> brought to you and recorded by us. 
                                 </p>
                             </div>
                             <div class='animated fadeIn'>
@@ -152,10 +152,10 @@
                                         <span class='button_about-block button_share button_share__about'>
                                             share
                                         </span>
-                                        or
+                                        <!-- or
                                         <span class='button_about-block button_donate'>
                                             donate
-                                        </span>
+                                        </span> -->
                                     </p>
                                     <p>Enjoy.</p>
                                 </div>
@@ -169,11 +169,12 @@
             </div>
 
             <div id='video-wrap'>
-                <video playsinline autoplay id="videobg">
+                <video playsinline autoplay id="videobg" src="">
                     <source src="" type="video/mp4">
-                    Your browser does not support the video tag. I suggest you upgrade your browser.
+                    Your browser does not support the video tag. We suggest you upgrade your browser.
                 </video>
                 <img src="images/spinner.gif" class='spinner'>
+                <img src="images/icons/mute_off.svg" class='mobile_sound'>
             </div>
             <aside class="logo_video-description">
                 <div class='main-logo'>
@@ -189,8 +190,13 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/vendor/screenfull.js"></script>
+        <script src="js/vendor/iphone-inline-video.js"></script>
         <script src="js/main.js"></script>
         <script src="js/privet.js"></script>
+        <script>
+            const video = document.querySelectorAll('video');
+            window.enableInlineVideo(video[0]);
+        </script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
