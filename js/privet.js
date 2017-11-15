@@ -197,9 +197,9 @@ $(function() {
 
   if(width > 765) {
     quality_string = 720;
+    player.removeAttribute('muted');
   } else {
     quality_string = 480;
-    player.muted = true;
     document.ontouchmove = (event) => { event.preventDefault(); }
     enableInlineVideo(video);
   } 
@@ -303,7 +303,7 @@ $(function() {
 
     player.onplay = () => {
       typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,checkDescription());  
-      
+
       if (width <= 756) {
         muteSoundIconMobile();
       }
