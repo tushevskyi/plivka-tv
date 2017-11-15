@@ -44,6 +44,7 @@ $(function() {
   player.onended = function() {
     player.src = nv_src;
     typewriterVideoDesc(nv_artist,nv_title,nv_desc);
+    player.play();
     nv_src = '';
     sendSock('get_next', chanel_name);
   };
@@ -156,6 +157,7 @@ $(function() {
   // player.volume = 0;          
   $(player).one('play', soundFadeOut);
 
+
   function soundFadeOut() {
     let _volumeInterval = setInterval(volumeUp, 350),
         volume          = 0;
@@ -177,14 +179,20 @@ $(function() {
       img_quality_holder  = $('.img_quality-holder'),
       img_quality         = $('.img_quality-holder img'),
       quality_string      = '',
-      w                   = window.innerWidth;
+      mobile_sound_btn    = $('.mobile_sound'),
+      width               = window.innerWidth;
   
 
-  if(w > 765) {
+  if(width > 765) {
     quality_string = 720;
   } else {
     quality_string = 480;
-  }   
+    player.muted = true;
+    document.ontouchmove = (event) => { event.preventDefault(); }
+    enableInlineVideo(video);
+    player.onplay = () => { mobile_sound_btn.css('display','block'); }
+  } 
+  
 
   quality_holder.on('click', changeQuality);
 
@@ -257,7 +265,7 @@ $(function() {
         holder.not($(e.target).parent()).fadeIn();
       },500);
     }    
-  }          
+  }     
 
   function setupVideo(videoObj) {
     var startTime = videoObj.current.start_time;
@@ -282,8 +290,13 @@ $(function() {
       }
     }
 
+    player.onplay = () => {
+      typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,checkDescription());  
 
-    typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,checkDescription());
+      if ( width <= 756) {
+        mobile_sound_btn.css('display','block');
+      }
+    }
     
   }
 

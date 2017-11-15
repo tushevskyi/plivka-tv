@@ -31,7 +31,8 @@ $(function() {
 			artist        		= $('.artist'),
         	title         		= $('.title'),
         	video_description	= $('.video-description'),
-        	main_logo 			= $('.main-logo');
+        	main_logo 			= $('.main-logo'),
+        	mobile_sound_btn	= $('.mobile_sound');
     
 
 	btn_about.on('click', aboutEvent);
@@ -65,6 +66,16 @@ $(function() {
 		};
 	}
 
+	{
+    	const w = window.innerWidth;
+
+	    if(w <= 765) {
+	    	mobile_sound_btn.on('click', mobileMuteOffEvent);
+	    	btn_mute_on.css('display','none');
+	    }
+
+  	}
+
 	function aboutEvent() {
 		about.css('display','block');
 		navigation.css('opacity','none');
@@ -81,6 +92,12 @@ $(function() {
 		btn_mute_on.css('display','none');
 		btn_mute_off.css('display','block');
 		video.prop('muted',1);
+	}
+
+	function mobileMuteOffEvent() {
+		mobile_sound_btn.css('display', 'none');
+		video.prop('muted',0);
+		btn_mute_on.css('display','block');
 	}
 
 	function muteOffEvent() {

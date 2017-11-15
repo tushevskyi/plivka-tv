@@ -294,7 +294,7 @@ body {
       .logo_video-description .video-description {
         margin: 15px 0 0 0; } }
     .logo_video-description .video-description .description_block {
-      width: 700px; }
+      width: 600px; }
       @media screen and (max-width: 768px) {
         .logo_video-description .video-description .description_block {
           font-size: 12px;
@@ -307,6 +307,12 @@ body * {
   font-family: 'PT Mono', monospace;
   color: #d2422f;
   outline-style: none; }
+
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-start-playback-button {
+  opacity: 0;
+  pointer-events: none;
+  width: 5px; }
 
 .navigation {
   min-width: 100vw;
@@ -354,6 +360,16 @@ body * {
     width: auto;
     height: auto;
     margin: auto; }
+#video-wrap .mobile_sound {
+  top: 50%;
+  left: 50%;
+  height: auto;
+  transform: translateX(-50%) translateY(-50%);
+  transition: 1s opacity;
+  z-index: 101;
+  position: absolute;
+  width: 110px;
+  display: none; }
 #video-wrap .spinner {
   border-radius: 50%;
   top: 50%;

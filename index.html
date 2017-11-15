@@ -169,11 +169,12 @@
             </div>
 
             <div id='video-wrap'>
-                <video playsinline autoplay id="videobg">
+                <video playsinline autoplay id="videobg" src="">
                     <source src="" type="video/mp4">
                     Your browser does not support the video tag. We suggest you upgrade your browser.
                 </video>
                 <img src="images/spinner.gif" class='spinner'>
+                <img src="images/icons/mute_off.svg" class='mobile_sound'>
             </div>
             <aside class="logo_video-description">
                 <div class='main-logo'>
@@ -189,8 +190,13 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/vendor/screenfull.js"></script>
+        <script src="js/vendor/iphone-inline-video.js"></script>
         <script src="js/main.js"></script>
         <script src="js/privet.js"></script>
+        <script>
+            const video = document.querySelectorAll('video');
+            window.enableInlineVideo(video[0]);
+        </script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>

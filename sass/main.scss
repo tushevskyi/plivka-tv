@@ -16,6 +16,13 @@ body {
   }
 }
 
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-start-playback-button {
+   opacity: 0;
+   pointer-events: none;
+   width: 5px;
+}
+
 .navigation {
   min-width: 100vw;
   min-height: 100%;
@@ -79,6 +86,18 @@ body {
       height: auto;
       margin: auto;
     }
+  }
+
+  .mobile_sound {
+    top: 50%;
+    left: 50%;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    transition: 1s opacity;
+    z-index: 101;
+    position: absolute;
+    width: 110px;
+    display: none;
   }
 
   .spinner {
