@@ -183,6 +183,18 @@ $(function() {
       width               = window.innerWidth;
   
 
+  const muteSoundIconMobileClosure = () => {
+    let executed = false;
+    return () => {
+      if(!executed) {
+        executed = true;
+        mobile_sound_btn.css('display','block');
+      }
+    }
+  }
+
+  const muteSoundIconMobile = muteSoundIconMobileClosure();
+
   if(width > 765) {
     quality_string = 720;
   } else {
@@ -190,7 +202,6 @@ $(function() {
     player.muted = true;
     document.ontouchmove = (event) => { event.preventDefault(); }
     enableInlineVideo(video);
-    mobile_sound_btn.css('display','block');
   } 
   
 
@@ -292,6 +303,7 @@ $(function() {
 
     player.onplay = () => {
       typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,checkDescription());  
+      muteSoundIconMobile();
     }
     
   }
