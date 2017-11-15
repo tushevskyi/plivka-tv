@@ -303,7 +303,10 @@ $(function() {
 
     player.onplay = () => {
       typewriterVideoDesc(videoObj.current.artist,videoObj.current.title,checkDescription());  
-      muteSoundIconMobile();
+      
+      if (width <= 756) {
+        muteSoundIconMobile();
+      }
     }
     
   }
