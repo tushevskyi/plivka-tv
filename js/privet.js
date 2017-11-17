@@ -366,7 +366,7 @@ $(function() {
   function fbShare() {
 
     let FBDesc  = 'plivka tv',
-        FBTitle = 'videoObj.current.title',
+        FBTitle = videoObj.current.title,
         FBLink  = 'http://plivka.tv/shared.html?v=' + videoObj.current.url,
         FBPic   = picture;
 
