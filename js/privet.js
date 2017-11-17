@@ -385,7 +385,7 @@ $(function() {
 
   function fbShareAbout() {
     let FBDesc  = 'Plivka is a research and educational art centre; a performance venue; a community of artists and enthusiasts; based in Kiev.',
-        FBTitle = PLIVKA TV,
+        FBTitle = 'PLIVKA TV',
         FBLink  = 'http://plivka.tv/',
         FBPic   = picture;
 
