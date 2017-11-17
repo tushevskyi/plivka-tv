@@ -203,7 +203,6 @@ $(function() {
   } else {
     quality_string = 480;
     player.setAttribute('muted', true); 
-    player.removeAttribute('muted'); 
     document.ontouchmove = (event) => { event.preventDefault(); }
     enableInlineVideo(video);
   } 
