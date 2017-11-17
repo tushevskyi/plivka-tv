@@ -198,11 +198,9 @@ $(function() {
 
   if(width > 765) {
     quality_string = 720;
-    setTimeout( () => { 
-    }, 10);
   } else {
     quality_string = 480;
-    player.setAttribute('muted',1); 
+    player.setAttribute('muted', true); 
     document.ontouchmove = (event) => { event.preventDefault(); }
     enableInlineVideo(video);
   } 
