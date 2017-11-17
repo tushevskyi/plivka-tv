@@ -154,9 +154,10 @@ $(function() {
       }    
   }     
 
-  player.volume = 0;          
-  $(player).one('play', soundFadeOut);
-
+  setTimeout( () => { 
+    player.volume = 0;    
+    $(player).one('play', soundFadeOut); 
+  }, 5);
 
   function soundFadeOut() {
     let _volumeInterval = setInterval(volumeUp, 350),
@@ -197,7 +198,9 @@ $(function() {
 
   if(width > 765) {
     quality_string = 720;
-    player.removeAttribute('muted');
+    setTimeout( () => { 
+      // player.removeAttribute('muted'); 
+    }, 10);
   } else {
     quality_string = 480;
     document.ontouchmove = (event) => { event.preventDefault(); }
