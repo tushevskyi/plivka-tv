@@ -408,14 +408,14 @@ $(function() {
       // // picture: picture,
       // href: 'http://plivka.tv/'
     }, function(response){}); 
-    'http://plivka.tv/shared.html?v=3XL1B8U4PV.mp4&fb_action_ids=10213436094370970&fb_action_types=og.shares'
+
   }
 
   function setSharedUrl(shared_path) {
     let video_pathname = window.location.search,
         stateObj       = { foo: "bar" };
 
-    shared_video_url = video_pathname.substring(3);
+    shared_video_url = video_pathname.substring(3).split('mp4')[0] + 'mp4';
     player.src = "http://cdn.plivka.tv/" + 720 + "/" + shared_video_url;  
     history.pushState(stateObj, null, "/");
 
