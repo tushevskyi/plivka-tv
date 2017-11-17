@@ -164,7 +164,6 @@ $(function() {
       
     function volumeUp() {
       volume += 0.05;
-      console.log(volume);
       if(volume > 1) {
         clearInterval(_volumeInterval);
       }
