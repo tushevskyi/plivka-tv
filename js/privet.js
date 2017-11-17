@@ -386,7 +386,7 @@ $(function() {
   function fbShareAbout() {
     let FBDesc  = 'Plivka is a research and educational art centre; a performance venue; a community of artists and enthusiasts; based in Kiev.',
         FBTitle = 'PLIVKA TV',
-        FBLink  = 'http://plivka.tv/',
+        FBLink  = '',
         FBPic   = picture;
 
     FB.ui({
@@ -400,7 +400,15 @@ $(function() {
               'og:image': FBPic
           }
       })
+      // display: 'popup',
+      // method: 'share',
+      // description: 'Plivka is a research and educational art centre; a performance venue; a community of artists and enthusiasts; based in Kiev.',
+      // title: 'PLIVKA TV',
+      // link: '',
+      // // picture: picture,
+      // href: 'http://plivka.tv/'
     }, function(response){}); 
+    'http://plivka.tv/shared.html?v=3XL1B8U4PV.mp4&fb_action_ids=10213436094370970&fb_action_types=og.shares'
   }
 
   function setSharedUrl(shared_path) {
@@ -410,6 +418,8 @@ $(function() {
     shared_video_url = video_pathname.substring(3);
     player.src = "http://cdn.plivka.tv/" + 720 + "/" + shared_video_url;  
     history.pushState(stateObj, null, "/");
+
+    console.log(video_pathname, shared_video_url)
   }
 
 
