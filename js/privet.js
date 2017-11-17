@@ -181,7 +181,8 @@ $(function() {
       img_quality         = $('.img_quality-holder img'),
       quality_string      = '',
       mobile_sound_btn    = $('.mobile_sound'),
-      width               = window.innerWidth;
+      width               = window.innerWidth,
+      video               = document.querySelector('video');
   
 
   const muteSoundIconMobileClosure = () => {
@@ -202,6 +203,7 @@ $(function() {
   } else {
     quality_string = 480;
     player.setAttribute('muted', true); 
+    player.removeAttribute('muted'); 
     document.ontouchmove = (event) => { event.preventDefault(); }
     enableInlineVideo(video);
   } 
