@@ -200,7 +200,7 @@ $(function() {
 
   if(width > 765) {
     quality_string = 720;
-    player.removeAttribute('muted'); 
+    setTimeout( () => { video.play() }, 5);
   } else {
     quality_string = 480;
     video_t.prop('muted',1); 
