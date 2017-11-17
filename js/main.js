@@ -6,6 +6,7 @@ $(function() {
 
 	const	btn_about 			= $('.button__about'),
 			video 				= $('#videobg'),
+			player              = document.getElementById('videobg'),
 			videoWrap 			= document.getElementById('video-wrap'),
 			about 				= $('.about_pop-up'),
 			navigation 			= $('.navigation'),
@@ -97,6 +98,7 @@ $(function() {
 	function mobileMuteOffEvent() {
 		mobile_sound_btn.css('display', 'none');
 		video.prop('muted',0);
+		player.removeAttribute('muted'); 
 		btn_mute_on.css('display','block');
 	}
 

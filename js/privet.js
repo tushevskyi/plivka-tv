@@ -198,6 +198,7 @@ $(function() {
 
   if(width > 765) {
     quality_string = 720;
+    player.removeAttribute('muted'); 
   } else {
     quality_string = 480;
     player.setAttribute('muted', true); 
