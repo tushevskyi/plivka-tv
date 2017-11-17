@@ -286,7 +286,7 @@ $(function() {
       player.src = fullUrl + '#t=' + startTime;
       clearedUrlLine();
     } else {
-      setSharedUrl('/shared.html');  
+      setSharedUrl();  
     }
 
     nv_src = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.next.url,
@@ -417,7 +417,7 @@ $(function() {
     history.pushState(stateObj, null, "/");
   }
 
-  function setSharedUrl(shared_path) {
+  function setSharedUrl() {
     let video_pathname = window.location.search,
         stateObj       = { foo: "bar" };
 
