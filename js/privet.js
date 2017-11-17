@@ -154,7 +154,7 @@ $(function() {
       }    
   }     
 
-  // player.volume = 0;          
+  player.volume = 0;          
   $(player).one('play', soundFadeOut);
 
 
@@ -164,6 +164,7 @@ $(function() {
       
     function volumeUp() {
       volume += 0.05;
+      console.log(volume);
       if(volume > 1) {
         clearInterval(_volumeInterval);
       }

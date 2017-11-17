@@ -118,6 +118,15 @@ video::-webkit-media-controls-start-playback-button {
 }
 
 .about_pop-up {
+  display: none;
+  background: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  z-index: 102;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
 
   .container {
     height: 100vh;
@@ -139,15 +148,7 @@ video::-webkit-media-controls-start-playback-button {
     /* NEW - Chrome */
     display: flex;
   }
-  display: none;
-  background: rgba(0, 0, 0, 0.9);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   
-
   .about_text {
     font-family: 'Source Sans Pro', sans-serif; 
     font-weight: 700; 

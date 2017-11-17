@@ -388,6 +388,7 @@ video::-webkit-media-controls-start-playback-button {
   display: none;
   background: rgba(0, 0, 0, 0.9);
   position: absolute;
+  z-index: 102;
   top: 0;
   bottom: 0;
   left: 0;
