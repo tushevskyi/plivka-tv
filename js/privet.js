@@ -358,7 +358,7 @@ $(function() {
 
   let main_share_btn  = $('.navigation .button_share'),
       about_share_btn = $('.button_share__about'),
-      picture         = 'http://plivka.tv/images/plivka-log-fb.png'
+      picture         = 'http://plivka.tv/images/plivka-log-fb.png';
 
   main_share_btn.on('click', fbShare);
   about_share_btn.on('click', fbShareAbout);
@@ -370,7 +370,7 @@ $(function() {
         description: "plivka tv",
         title: videoObj.current.title,
         link: '',
-        picture: picture,
+        // picture: picture,
         href: 'http://plivka.tv/shared.html?v=' + videoObj.current.url
     }, function(response){});
   }
@@ -382,7 +382,7 @@ $(function() {
         description: 'Plivka is a research and educational art centre; a performance venue; a community of artists and enthusiasts; based in Kiev.',
         title: 'PLIVKA TV',
         link: '',
-        picture: picture,
+        // picture: picture,
         href: 'http://plivka.tv/'
     }, function(response){}); 
   }
