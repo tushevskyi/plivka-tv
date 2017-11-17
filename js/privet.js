@@ -374,12 +374,12 @@ $(function() {
       method: 'share_open_graph',
       action_type: 'og.shares',
       action_properties: JSON.stringify({
-          object: {
-              'og:url': FBLink,
-              'og:title': FBTitle,
-              'og:description': FBDesc,
-              'og:image': FBPic
-          }
+        object: {
+            'og:url': FBLink,
+            'og:title': FBTitle,
+            'og:description': FBDesc,
+            'og:image': FBPic
+        }
       })
     }, function(response){});
   }
@@ -394,12 +394,12 @@ $(function() {
       method: 'share_open_graph',
       action_type: 'og.shares',
       action_properties: JSON.stringify({
-          object: {
-              'og:url': FBLink,
-              'og:title': FBTitle,
-              'og:description': FBDesc,
-              'og:image': FBPic
-          }
+        object: {
+            'og:url': FBLink,
+            'og:title': FBTitle,
+            'og:description': FBDesc,
+            'og:image': FBPic
+        }
       })
       // display: 'popup',
       // method: 'share',
