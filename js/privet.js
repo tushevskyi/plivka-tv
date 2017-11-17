@@ -199,10 +199,10 @@ $(function() {
   if(width > 765) {
     quality_string = 720;
     setTimeout( () => { 
-      // player.removeAttribute('muted'); 
     }, 10);
   } else {
     quality_string = 480;
+    player.setAttribute('muted',1); 
     document.ontouchmove = (event) => { event.preventDefault(); }
     enableInlineVideo(video);
   } 
