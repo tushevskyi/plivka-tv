@@ -364,14 +364,31 @@ $(function() {
   about_share_btn.on('click', fbShareAbout);
 
   function fbShare() {
+
+    let FBDesc  = 'plivka tv';
+        FBTitle = 'videoObj.current.title';
+        FBLink  = 'http://plivka.tv/shared.html?v=' + videoObj.current.url;
+        FBPic   = picture;
+
     FB.ui({
-        display: 'popup',
-        method: 'share',
-        description: "plivka tv",
-        title: videoObj.current.title,
-        link: '',
+        method: 'share_open_graph',
+        action_type: 'og.shares',
+        action_properties: JSON.stringify({
+            object: {
+                'og:url': FBLink,
+                'og:title': FBTitle,
+                'og:description': FBDesc,
+                'og:image': FBPic
+            }
+        })
+
+        // display: 'popup',
+        // method: 'share',
+        // description: "plivka tv",
+        // title: videoObj.current.title,
+        // link: '',
         // picture: picture,
-        href: 'http://plivka.tv/shared.html?v=' + videoObj.current.url
+        // href: 'http://plivka.tv/shared.html?v=' + videoObj.current.url
     }, function(response){});
   }
 
