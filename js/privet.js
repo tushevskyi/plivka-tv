@@ -284,6 +284,7 @@ $(function() {
 
     if (window.location.pathname !== '/shared.html') {
       player.src = fullUrl + '#t=' + startTime;
+      clearedUrlLine();
     } else {
       setSharedUrl('/shared.html');  
     }
@@ -411,6 +412,11 @@ $(function() {
 
   }
 
+  const clearedUrlLine = () => {
+    const stateObj = { foo: "bar" };
+    history.pushState(stateObj, null, "/");
+  }
+
   function setSharedUrl(shared_path) {
     let video_pathname = window.location.search,
         stateObj       = { foo: "bar" };
@@ -418,8 +424,6 @@ $(function() {
     shared_video_url = video_pathname.substring(3).split('mp4')[0] + 'mp4';
     player.src = "http://cdn.plivka.tv/" + 720 + "/" + shared_video_url;  
     history.pushState(stateObj, null, "/");
-
-    console.log(video_pathname, shared_video_url)
   }
 
 
