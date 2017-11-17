@@ -364,43 +364,42 @@ $(function() {
   about_share_btn.on('click', fbShareAbout);
 
   function fbShare() {
-
     let FBDesc  = 'plivka tv',
         FBTitle = videoObj.current.title,
         FBLink  = 'http://plivka.tv/shared.html?v=' + videoObj.current.url,
         FBPic   = picture;
 
     FB.ui({
-        method: 'share_open_graph',
-        action_type: 'og.shares',
-        action_properties: JSON.stringify({
-            object: {
-                'og:url': FBLink,
-                'og:title': FBTitle,
-                'og:description': FBDesc,
-                'og:image': FBPic
-            }
-        })
-
-        // display: 'popup',
-        // method: 'share',
-        // description: "plivka tv",
-        // title: videoObj.current.title,
-        // link: '',
-        // picture: picture,
-        // href: 'http://plivka.tv/shared.html?v=' + videoObj.current.url
+      method: 'share_open_graph',
+      action_type: 'og.shares',
+      action_properties: JSON.stringify({
+          object: {
+              'og:url': FBLink,
+              'og:title': FBTitle,
+              'og:description': FBDesc,
+              'og:image': FBPic
+          }
+      })
     }, function(response){});
   }
 
   function fbShareAbout() {
+    let FBDesc  = 'Plivka is a research and educational art centre; a performance venue; a community of artists and enthusiasts; based in Kiev.',
+        FBTitle = PLIVKA TV,
+        FBLink  = 'http://plivka.tv/',
+        FBPic   = picture;
+
     FB.ui({
-        display: 'popup',
-        method: 'share',
-        description: 'Plivka is a research and educational art centre; a performance venue; a community of artists and enthusiasts; based in Kiev.',
-        title: 'PLIVKA TV',
-        link: '',
-        // picture: picture,
-        href: 'http://plivka.tv/'
+      method: 'share_open_graph',
+      action_type: 'og.shares',
+      action_properties: JSON.stringify({
+          object: {
+              'og:url': FBLink,
+              'og:title': FBTitle,
+              'og:description': FBDesc,
+              'og:image': FBPic
+          }
+      })
     }, function(response){}); 
   }
 
