@@ -17,6 +17,7 @@ function fetchTapped() {
     setServer()
     setPlayer()
     getData()
+    getActiveConnections()
 }
 
 function setServer() {
@@ -52,7 +53,6 @@ function requestCurrent() {
 
 function getData() {
   if ("WebSocket" in window) {
-      console.log(current_player)
     //  alert("WebSocket is supported by your Browser!");
 
     // Let us open a web socket
@@ -65,7 +65,6 @@ function getData() {
         ws = new WebSocket(server);
     } else if (current_player != player) {
         setPlayer()
-        console.log(current_player)
         requestCurrent()
         return
     } else {
@@ -102,11 +101,10 @@ function getData() {
 }
 
 function showPlaylist() {
-    var playerInput = document.getElementById("playerInput").value
     var cmd = {
             "command": "admin_playlist_print",
             "token": "ASS",
-            "layer": playerInput
+            "layer": player
         }
     sendCommand(cmd)
 }
@@ -127,11 +125,10 @@ function forcePushNextUrl() {
 }
 
 function reloadPlaylist() {
-    var playerInput = document.getElementById("playerInput").value
     var cmd = {
             "command": "admin_playlist_reload",
             "token": "ASS",
-            "layer": playerInput
+            "layer": player
         }
     sendCommand(cmd)
 }
@@ -146,6 +143,18 @@ function customCommandPayload() {
     }
     cmd = JSON.parse(command)
     sendCommand(cmd)
+}
+
+function getActiveConnections() {
+    $("#active-connections").text('...')
+    cmd = {
+        "command": "admin_active_connections",
+        "token": "ASS",
+        "layer": player
+    }
+    setTimeout(() => {
+        sendCommand(cmd)
+    }, 300);
 }
 
 function processMessage(msg) {
@@ -185,9 +194,19 @@ function processMessage(msg) {
         case "result":
             var result = msg.status
             alert(result)
+            break;
         case "admin_playlist":
             var x = msg.playlist.join("\n")
             alert(x)
+            break;
+        case "admin_connections":
+            var conns = msg['connections']
+            for (i=0; i < conns.length; i++) { 
+                ip = conns[i]['ip']
+                pl = conns[i]['player']
+            }
+            $("#active-connections").text(conns.length)
+
             
     }
 }
@@ -202,3 +221,4 @@ setServer()
 setPlayer()
 getData()
 getPlayers()
+getActiveConnections()
