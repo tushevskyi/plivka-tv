@@ -2,7 +2,7 @@ $(function() {
 
   'use strict';
 
-  const wsHost            = "ws://ws.plivka.tv:8085/ws",
+  const wsHost            = "ws://localhost:8085/ws",
         player            = document.getElementById('videobg'),
         artist            = $('.artist'),
         title             = $('.title'),

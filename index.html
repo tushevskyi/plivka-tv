@@ -2,172 +2,200 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>PLTV</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="">
+<!--<![endif]-->
 
-        <!-- CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-        <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:700" rel="stylesheet">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/main.css">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>PLTV</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="images/favicon/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
-        <link rel="manifest" href="images/favicon/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
-        <meta name="theme-color" content="#ffffff">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:700" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
 
-        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-        <script>
-          window.fbAsyncInit = function() {
+    <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <script>
+        window.fbAsyncInit = function () {
             FB.init({
-              appId      : '1846060225655847',
-              xfbml      : true,
-              version    : 'v2.8'
+                appId: '1846060225655847',
+                xfbml: true,
+                version: 'v2.8'
             });
             FB.AppEvents.logPageView();
-          };
+        };
 
-          (function(d, s, id){
-             var js, fjs = d.getElementsByTagName(s)[0];
-             if (d.getElementById(id)) {return;}
-             js = d.createElement(s); js.id = id;
-             js.src = "//connect.facebook.net/en_US/sdk.js";
-             fjs.parentNode.insertBefore(js, fjs);
-           }(document, 'script', 'facebook-jssdk'));
-        </script>
-    </head>
-    <body>
-        <!--[if lt IE 8]>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109915053-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109915053-1');
+    </script>
+
+</head>
+
+<body>
+    <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div class="wrap">
-            <div class='navigation showNavigation'>
-                <div class='button button__about'>
-                    about
+    <div class="wrap">
+        <div class='navigation showNavigation'>
+            <div class='button button__about'>
+                about
+            </div>
+            <div class='button-block'>
+                <div class="button button__choose-chanel">
+                    <div class="current-chanel">
+                        <img src='images/icons/SHUFFLE.svg' alt="current chanel" class='img-scale'>
+                    </div>
+                    <div class="chanel__holder">
+                        <div class="img_chanel__holder">
+                            <img class='js_main' src='images/icons/SHUFFLE.svg' alt="current chanel">
+                            <span id="js_main" class="icon-SHUFFLE"></span>
+                        </div>
+                        <div class="img_chanel__holder">
+                            <img class='js_16' src='images/icons/16_CHANNEL.svg' alt="current chanel">
+                            <span id="js_16" class="icon-CHANNEL"></span>
+                        </div>
+                        <div class="img_chanel__holder">
+                            <img class='js_ukho' src='images/icons/UKHO_CHANNEL.svg' alt="current chanel">
+                            <span id="js_ukho" class="icon-UKHO_CHANNEL"></span>
+                        </div>
+                    </div>
                 </div>
-                <div class='button-block'>
-                    <div class="button button__choose-chanel">
-                        <div class="current-chanel">
-                            <img src='images/icons/SHUFFLE.svg' alt="current chanel" class='img-scale'>
+                <div class='button button__fullscreen'>
+                    <img alt='fullscreen button' src='images/icons/fullscreen.svg' class='img-scale'>
+                </div>
+                <div class='button button__mute-on'>
+                    <img alt='mute sound button img' src='images/icons/mute_on.svg' class='img-scale'>
+                </div>
+                <div class='button button__mute-off'>
+                    <img alt='mute sound button img' src='images/icons/mute_off.svg' class='img-scale'>
+                </div>
+                <div class="button button__quality">
+                    <div class="current-quality">
+                        <img alt='video quality button img' src='images/icons/HD_icon.svg' class='img-scale'>
+                    </div>
+                    <div class="quality__holder">
+                        <div class="img_quality-holder">
+                            <img class="js_sd" alt='video quality img' src='images/icons/SD_icon.svg'>
+                            <span id="js_sd" class="icon-SD_icon"></span>
                         </div>
-                        <div class="chanel__holder">
-                            <div class="img_chanel__holder">
-                                <img class='js_main' src='images/icons/SHUFFLE.svg' alt="current chanel">
-                                <span id="js_main" class="icon-SHUFFLE"></span>
-                            </div>
-                            <div class="img_chanel__holder">
-                                <img class='js_16' src='images/icons/16_CHANNEL.svg' alt="current chanel">  
-                                <span id="js_16" class="icon-CHANNEL"></span>
-                            </div>
-                            <div class="img_chanel__holder">
-                                <img class='js_ukho' src='images/icons/UKHO_CHANNEL.svg' alt="current chanel">
-                                <span id="js_ukho" class="icon-UKHO_CHANNEL"></span>
-                            </div>
+                        <div class="img_quality-holder">
+                            <img class="js_hd" alt='video quality img' src='images/icons/HD_icon.svg'>
+                            <span id="js_hd" class="icon-HD_icon"></span>
                         </div>
-                    </div>
-                    <div class='button button__fullscreen'>
-                        <img alt='fullscreen button' src='images/icons/fullscreen.svg' class='img-scale'>
-                    </div>
-                    <div class='button button__mute-on'>
-                        <img alt='mute sound button img' src='images/icons/mute_on.svg' class='img-scale'>
-                    </div>
-                    <div class='button button__mute-off'>
-                        <img alt='mute sound button img' src='images/icons/mute_off.svg' class='img-scale'>
-                    </div>
-                    <div class="button button__quality">
-                        <div class="current-quality">
-                          <img alt='video quality button img' src='images/icons/HD_icon.svg' class='img-scale'>
-                        </div>
-                        <div class="quality__holder">
-                            <div class="img_quality-holder">
-                                <img class="js_sd" alt='video quality img' src='images/icons/SD_icon.svg'>
-                                <span id="js_sd" class="icon-SD_icon"></span>
-                            </div>
-                            <div class="img_quality-holder">
-                                <img class="js_hd" alt='video quality img' src='images/icons/HD_icon.svg'>
-                                <span id="js_hd" class="icon-HD_icon"></span>
-                            </div>
-                            <div class="img_quality-holder">
-                                <img class="js_fhd" alt='video quality img' src='images/icons/HD_plus_icon.svg'>
-                                <span id="js_fhd" class="icon-HD_plus_icon"></span>
-                            </div>
+                        <div class="img_quality-holder">
+                            <img class="js_fhd" alt='video quality img' src='images/icons/HD_plus_icon.svg'>
+                            <span id="js_fhd" class="icon-HD_plus_icon"></span>
                         </div>
                     </div>
-                    <div class='button button__open-share-donate'>
-                        <img alt='share button img' src='images/icons/share.svg' class='img-scale'>
-                        <div class='share-donate__holder'>
-                            <div class='button button_share'>
-                                share
-                            </div>
-                            <!-- <div class='button button_donate'>
+                </div>
+                <div class='button button__open-share-donate'>
+                    <img alt='share button img' src='images/icons/share.svg' class='img-scale'>
+                    <div class='share-donate__holder'>
+                        <div class='button button_share'>
+                            share
+                        </div>
+                        <!-- <div class='button button_donate'>
                                 donate
                             </div> -->
-                        </div>
                     </div>
-                </div>
-                <div class="show_comments">9l_Jlo][</div>
-                <div class='comment-form'>
-                    <div class='comment-box'>
-                    </div>
-                    <input type='text' class="add-message" maxlength='49' />
                 </div>
             </div>
-            <div class='about_pop-up'>
-                <div class="container">
-                    <div class='row'>
-                        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                            <div class='about-info-block animated fadeIn'>
-                                <p class='about_text'>
-                                    Plivka is a research <span class='br'></span> and educational art centre; <span class='br'></span> a performance venue; <span class='br'></span> a community of artists and enthusiasts; <span class='br'></span> based in Kiev.
-                                </p>
-                                <p class='about_text'>    
-                                    Plivka.tv is an open archive <span class='br'></span> broadcasting progressive content, <span class='br'></span> performed by local and foreign artists, <span class='br'></span> brought to you and recorded by us. 
-                                </p>
-                            </div>
-                            <div class='animated fadeIn'>
-                                <div class='about_share-donate'>
-                                    <p>
-                                        If you want to support our community —
-                                        <span class='button_about-block button_share button_share__about'>
-                                            share
-                                        </span>
-                                        <!-- or
+            <div class="show_comments">9l_Jlo][</div>
+            <div class='comment-form'>
+                <div class='comment-box'>
+                </div>
+                <input type='text' class="add-message" maxlength='49' />
+            </div>
+        </div>
+        <div class='about_pop-up'>
+            <div class="container">
+                <div class='row'>
+                    <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                        <div class='about-info-block animated fadeIn'>
+                            <p class='about_text'>
+                                Plivka is a research
+                                <span class='br'></span> and educational art centre;
+                                <span class='br'></span> a performance venue;
+                                <span class='br'></span> a community of artists and enthusiasts;
+                                <span class='br'></span> based in Kiev.
+                            </p>
+                            <p class='about_text'>
+                                Plivka.tv is an open archive
+                                <span class='br'></span> broadcasting progressive content,
+                                <span class='br'></span> performed by local and foreign artists,
+                                <span class='br'></span> brought to you and recorded by us.
+                            </p>
+                        </div>
+                        <div class='animated fadeIn'>
+                            <div class='about_share-donate'>
+                                <p>
+                                    If you want to support our community —
+                                    <span class='button_about-block button_share button_share__about'>
+                                        share
+                                    </span>
+                                    <!-- or
                                         <span class='button_about-block button_donate'>
                                             donate
                                         </span> -->
-                                    </p>
-                                    <p>Enjoy.</p>
-                                </div>
+                                </p>
+                                <p>Enjoy.</p>
                             </div>
                         </div>
-                        <div class='button button_close'>
-                            <img src="images/icons/close.svg">
-                        </div>
+                    </div>
+                    <div class='button button_close'>
+                        <img src="images/icons/close.svg">
                     </div>
                 </div>
             </div>
+        </div>
 
+<<<<<<< Updated upstream
             <div id='video-wrap'>
                 <video playsinline autoplay id="videobg" src="">
                     <source src="" type="video/mp4">
@@ -182,10 +210,25 @@
                 </div>
                 <div class="video-description"></div>
             </aside>
+=======
+        <div id='video-wrap'>
+            <video playsinline autoplay id="videobg">
+                <source src="" type="video/mp4"> Your browser does not support the video tag. We suggest you upgrade your browser.
+            </video>
+            <img src="images/spinner.gif" class='spinner'>
+>>>>>>> Stashed changes
         </div>
+        <aside class="logo_video-description">
+            <div class='main-logo'>
+                <img alt="main-logo" src='images/icons/plivka_logo.svg'>
+            </div>
+            <div class="video-description"></div>
+        </aside>
+    </div>
 
 
 
+<<<<<<< Updated upstream
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
         <script src="js/vendor/bootstrap.min.js"></script>
@@ -197,15 +240,16 @@
             const video = document.querySelectorAll('video');
             window.enableInlineVideo(video[0]);
         </script>
+=======
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')
+    </script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/screenfull.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/privet.js"></script>
+</body>
+>>>>>>> Stashed changes
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-        </script>
-    </body>
 </html>
