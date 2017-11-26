@@ -1,7 +1,7 @@
 var ws = null;
 var current_player = null;
-// var server = "ws://ws.plivka.tv:8085/ws";
-var server = "ws://localhost:8085/ws";
+var server = "ws://ws.plivka.tv:8085/ws";
+/*var server = "ws://localhost:8085/ws";*/
 var player = "main"
 
 var nextUpdate = null;
