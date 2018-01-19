@@ -219,19 +219,19 @@ $(function() {
     switch(e.target.id) {
       case 'js_sd': 
         quality_string = 480;
-        fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + (shared_video_url || videoObj.current.url);
+        fullUrl = "http://cdn2.plivka.tv/" + quality_string + "/" + (shared_video_url || videoObj.current.url);
         player.src = fullUrl + '#t=' + video_currentTime;
         current_quality_img.attr('src', sd_img_src);
         break;
       case 'js_hd':
         quality_string = 720;
-        fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + (shared_video_url || videoObj.current.url);
+        fullUrl = "http://cdn2.plivka.tv/" + quality_string + "/" + (shared_video_url || videoObj.current.url);
         player.src = fullUrl + '#t=' + video_currentTime;
         current_quality_img.attr('src', hd_img_src);
         break;
       case 'js_fhd':
         quality_string = 1080;
-        fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + (shared_video_url || videoObj.current.url);
+        fullUrl = "http://cdn2.plivka.tv/" + quality_string + "/" + (shared_video_url || videoObj.current.url);
         player.src = fullUrl + '#t=' + video_currentTime;
         current_quality_img.attr('src', fhd_img_src);
         break;
@@ -284,7 +284,7 @@ $(function() {
 
   function setupVideo(videoObj) {
     var startTime = videoObj.current.start_time;
-    var fullUrl = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.current.url;
+    var fullUrl = "http://cdn2.plivka.tv/" + quality_string + "/" + videoObj.current.url;
 
     if (window.location.pathname !== '/shared.html') {
       player.src = fullUrl + '#t=' + startTime;
@@ -293,7 +293,7 @@ $(function() {
       setSharedUrl();  
     }
 
-    nv_src = "http://cdn.plivka.tv/" + quality_string + "/" + videoObj.next.url,
+    nv_src = "http://cdn2.plivka.tv/" + quality_string + "/" + videoObj.next.url,
     nv_artist = videoObj.next.artist,
     nv_title = videoObj.next.title,
     nv_desc = videoObj.next.desc;
@@ -354,7 +354,7 @@ $(function() {
   }
 
   function setupNext(receivedDataObj) {
-      nv_src = "http://cdn.plivka.tv/" + quality_string + "/" + receivedDataObj.next.url;
+      nv_src = "http://cdn2.plivka.tv/" + quality_string + "/" + receivedDataObj.next.url;
       nv_artist = receivedDataObj.next.artist;
       nv_title = receivedDataObj.next.title;
       nv_desc = receivedDataObj.next.description;
@@ -426,7 +426,7 @@ $(function() {
         stateObj       = { foo: "bar" };
 
     shared_video_url = video_pathname.substring(3).split('mp4')[0] + 'mp4';
-    player.src = "http://cdn.plivka.tv/" + 720 + "/" + shared_video_url;  
+    player.src = "http://cdn2.plivka.tv/" + 720 + "/" + shared_video_url;
     history.pushState(stateObj, null, "/");
   }
 
